@@ -2,7 +2,6 @@
 
 Write a 1-2 sentences that quickly and clearly convey what your repo is for.
 
-This is a demo of a change by Neil.
 
 ## Overview
 
