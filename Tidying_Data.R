@@ -46,7 +46,4 @@ IMDBRatingTidy <- IMDBRatingRaw %>%
 
 
 # Megring the two datasets -----
-# Load packages 
-library(tidyverse)
-library(dplyr)
-# Join the data set ----- 
+
