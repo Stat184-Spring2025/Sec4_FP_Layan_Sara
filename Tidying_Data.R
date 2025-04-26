@@ -24,7 +24,7 @@ IMDB_Gross <- IMDB_Gross %>%
 # Tidy the IMDB Rating data ----
 IMDB_Rating <-IMDB_RatingRaw %>%
   #Remove the unwanted junk columns 
-  select(-c("X", "IMDB.link")) %>%
+  select(-c("X", "IMDB.link", "Duration")) %>%
   #Take the first 3 genres of the movies to make it simpler 
   separate(Genre, into = c("Main_Genre", "Subgenre 1", "Subgenre 2"), 
            sep = "\\|", fill = "right", extra = "drop") %>%
@@ -37,19 +37,6 @@ IMDB_Rating <-IMDB_RatingRaw %>%
            sep = "\\|", fill = "right", extra = "drop") %>%
   #Remove extra spaces between genres
   mutate(across(c("Main_Origin", "Suborigin 1", "Suborigin 2"), 
-                ~ trimws(.))) %>%
-  #Convert Duration to total minutes instead of hours and minutes
-  mutate(
-    #extract hours before 'h'
-    Hours = str_extract(Duration, "\\d+h") %>% str_remove("h") %>% 
-      as.numeric(),
-    #extract minutes before 'min'
-    Minutes = str_extract(Duration, "\\d+min") %>% str_remove("min") %>% 
-      as.numeric(),
-    Hours = ifelse(is.na(Hours), 0, Hours),      # if no hours, set to 0
-    Minutes = ifelse(is.na(Minutes), 0, Minutes),  # if no minutes, set to 0
-    Duration_min = Hours * 60 + Minutes             # total minutes
-  ) %>%
-  select(-Duration, -Hours, -Minutes, )
+                ~ trimws(.)))
 
 
