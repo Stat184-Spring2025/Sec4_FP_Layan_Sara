@@ -1,0 +1,114 @@
+"Title","Year","main_genre","Subgenre 1","Subgenre 2","main_origin","Director","IMDB.rating","Rating.count","rating","writer","star","budget","gross","company","runtime"
+"The Shawshank Redemption",1994,"Drama",NA,NA,"USA","Frank Darabont",9.3,2030817,"R","Stephen King","Tim Robbins",2.5e+07,28817291,"Castle Rock Entertainment",142
+"The Dark Knight",2008,"Drama","Action","Thriller","USA","Christopher Nolan",9,1998623,"PG-13","Jonathan Nolan","Christian Bale",1.85e+08,1005973645,"Warner Bros.",152
+"Schindler's List",1993,"Drama","Biography","History","USA","Steven Spielberg",8.9,1050056,"R","Thomas Keneally","Liam Neeson",2.2e+07,322161245,"Universal Pictures",195
+"The Lord of the Rings: The Return of the King",2003,"Drama","Adventure","Fantasy","USA","Peter Jackson",8.9,1445888,"PG-13","J.R.R. Tolkien","Elijah Wood",9.4e+07,1146030912,"New Line Cinema",201
+"Pulp Fiction",1994,"Drama","Crime",NA,"USA","Quentin Tarantino",8.9,1585797,"R","Quentin Tarantino","John Travolta",8e+06,213928762,"Miramax",154
+"Fight Club",1999,"Drama",NA,NA,"USA","David Fincher",8.8,1625021,"R","Chuck Palahniuk","Brad Pitt",6.3e+07,101209702,"Fox 2000 Pictures",139
+"The Lord of the Rings: The Fellowship of the Ring",2001,"Drama","Fantasy","Adventure","USA","Peter Jackson",8.8,1462502,"PG-13","J.R.R. Tolkien","Elijah Wood",9.3e+07,897690072,"New Line Cinema",178
+"Forrest Gump",1994,"Drama","Romance",NA,"USA","Robert Zemeckis",8.8,1550083,"PG-13","Winston Groom","Tom Hanks",5.5e+07,678226133,"Paramount Pictures",142
+"Star Wars: Episode V - The Empire Strikes Back",1980,"Adventure","Fantasy","Action","USA","Irvin Kershner",8.8,1019768,"PG","Leigh Brackett","Mark Hamill",1.8e+07,538375067,"Lucasfilm",124
+"Inception",2010,"Adventure","Action","Thriller","USA","Christopher Nolan",8.8,1778263,"PG-13","Christopher Nolan","Leonardo DiCaprio",1.6e+08,836836967,"Warner Bros.",148
+"The Lord of the Rings: The Two Towers",2002,"Drama","Fantasy","Adventure","USA","Peter Jackson",8.7,1307197,"PG-13","J.R.R. Tolkien","Elijah Wood",9.4e+07,947495095,"New Line Cinema",179
+"Goodfellas",1990,"Drama","Crime",NA,"USA","Martin Scorsese",8.7,875941,"R","Nicholas Pileggi","Robert De Niro",2.5e+07,46963277,"Warner Bros.",146
+"The Matrix",1999,"Action",NA,NA,"USA","Lana Wachowski",8.7,1457616,"R","Lilly Wachowski","Keanu Reeves",6.3e+07,466364845,"Warner Bros.",136
+"Se7en",1995,"Drama","Thriller","Mystery","USA","David Fincher",8.6,1242595,"R","Andrew Kevin Walker","Morgan Freeman",3.3e+07,327333559,"Cecchi Gori Pictures",127
+"The Silence of the Lambs",1991,"Drama","Thriller","Crime","USA","Jonathan Demme",8.6,1091651,"R","Thomas Harris","Jodie Foster",1.9e+07,272742922,"Strong Heart/Demme Production",118
+"The Usual Suspects",1995,"Thriller","Mystery","Crime","USA","Bryan Singer",8.6,881292,"R","Christopher McQuarrie","Kevin Spacey",6e+06,23341568,"PolyGram Filmed Entertainment",106
+"Saving Private Ryan",1998,"Drama","War",NA,"USA","Steven Spielberg",8.6,1071815,"R","Robert Rodat","Tom Hanks",7e+07,482349603,"Dreamworks Pictures",169
+"Spider-Man: Into the Spider-Verse",2018,"Comedy","Adventure","Animation","USA","Bob Persichetti",8.7,43084,"PG","Phil Lord","Shameik Moore",9e+07,375540831,"Sony Pictures Entertainment (SPE)",117
+"The Green Mile",1999,"Drama","Fantasy","Mystery","USA","Frank Darabont",8.5,974912,"R","Stephen King","Tom Hanks",6e+07,286801374,"Castle Rock Entertainment",189
+"Interstellar",2014,"Drama","Adventure",NA,"USA","Christopher Nolan",8.6,1240319,"PG-13","Jonathan Nolan","Matthew McConaughey",1.65e+08,701729206,"Paramount Pictures",169
+"American History X",1998,"Drama",NA,NA,"USA","Tony Kaye",8.5,925585,"R","David McKenna","Edward Norton",2e+07,23875127,"New Line Cinema",119
+"The Pianist",2002,"Drama","Biography","War","France","Roman Polanski",8.5,618407,"R","Ronald Harwood","Adrien Brody",3.5e+07,120072577,"R.P. Productions",150
+"The Departed",2006,"Drama","Thriller","Crime","Hong Kong","Martin Scorsese",8.5,1043844,"R","William Monahan","Leonardo DiCaprio",9e+07,291465373,"Warner Bros.",151
+"Terminator 2: Judgment Day",1991,"Action",NA,NA,"France","James Cameron",8.5,880764,"R","James Cameron","Arnold Schwarzenegger",1.02e+08,520881154,"Carolco Pictures",137
+"Back to the Future",1985,"Comedy","Adventure",NA,"USA","Robert Zemeckis",8.5,901606,"PG","Robert Zemeckis","Michael J. Fox",1.9e+07,381906762,"Universal Pictures",116
+"Whiplash",2014,"Drama","Music",NA,"USA","Damien Chazelle",8.5,586547,"R","Damien Chazelle","Miles Teller",3300000,49396747,"Bold Films",106
+"Gladiator",2000,"Drama","Adventure","Action","USA","Ridley Scott",8.5,1174412,"R","David Franzoni","Russell Crowe",1.03e+08,465380802,"Dreamworks Pictures",155
+"The Prestige",2006,"Drama","Thriller","Mystery","USA","Christopher Nolan",8.5,1032561,"PG-13","Jonathan Nolan","Christian Bale",4e+07,109676311,"Touchstone Pictures",130
+"Memento",2000,"Thriller","Mystery",NA,"USA","Christopher Nolan",8.5,1005884,"R","Christopher Nolan","Guy Pearce",9e+06,40047078,"Newmarket Capital Group",113
+"Avengers: Infinity War",2018,"Adventure","Fantasy","Action","USA","Anthony Russo",8.5,547495,"PG-13","Christopher Markus","Robert Downey Jr.",3.21e+08,2048359754,"Marvel Studios",149
+"The Shining",1980,"Drama","Horror",NA,"USA","Stanley Kubrick",8.4,753633,"R","Stephen King","Jack Nicholson",1.9e+07,46998772,"Warner Bros.",146
+"Django Unchained",2012,"Drama","Western",NA,"USA","Quentin Tarantino",8.4,1170940,"R","Quentin Tarantino","Jamie Foxx",1e+08,426074373,"The Weinstein Company",165
+"WALL·E",2008,"Adventure","Animation","Family","USA","Andrew Stanton",8.4,877732,"G","Andrew Stanton","Ben Burtt",1.8e+08,521311890,"FortyFour Studios",98
+"American Beauty",1999,"Drama",NA,NA,"USA","Sam Mendes",8.4,966877,"R","Alan Ball","Kevin Spacey",1.5e+07,356296601,"Dreamworks Pictures",122
+"The Dark Knight Rises",2012,"Action","Thriller",NA,"USA","Christopher Nolan",8.4,1349163,"PG-13","Jonathan Nolan","Christian Bale",2.5e+08,1081142612,"Warner Bros.",164
+"Aliens",1986,"Adventure","Action","Thriller","USA","James Cameron",8.4,584962,"R","James Cameron","Sigourney Weaver",18500000,131060248,"Twentieth Century Fox",137
+"Once Upon a Time in America",1984,"Drama","Crime",NA,"Italy","Sergio Leone",8.4,268592,"R","Harry Grey","Robert De Niro",3e+07,5473212,"The Ladd Company",229
+"Coco",2017,"Comedy","Adventure","Animation","USA","Lee Unkrich",8.4,244493,"PG","Lee Unkrich","Anthony Gonzalez",1.75e+08,807817888,"Walt Disney Pictures",105
+"Braveheart",1995,"Drama","Biography","War","USA","Mel Gibson",8.4,871297,"R","Randall Wallace","Mel Gibson",7.2e+07,213216216,"Icon Entertainment International",178
+"Reservoir Dogs",1992,"Drama","Thriller","Crime","USA","Quentin Tarantino",8.3,798275,"R","Quentin Tarantino","Harvey Keitel",1200000,2913644,"Live Entertainment",99
+"Star Wars: Episode VI - Return of the Jedi",1983,"Adventure","Fantasy","Action","USA","Richard Marquand",8.3,836522,"PG","Lawrence Kasdan","Mark Hamill",32500000,475106177,"Lucasfilm",131
+"Amadeus",1984,"Drama","Biography","History","France","Milos Forman",8.3,327416,"PG","Peter Shaffer","F. Murray Abraham",1.8e+07,52066791,"AMLF",160
+"Requiem for a Dream",2000,"Drama",NA,NA,"USA","Darren Aronofsky",8.3,682068,"Unrated","Hubert Selby Jr.","Ellen Burstyn",4500000,7390108,"Artisan Entertainment",102
+"Eternal Sunshine of the Spotless Mind",2004,"Drama","Romance",NA,"USA","Michel Gondry",8.3,801164,"R","Charlie Kaufman","Jim Carrey",2e+07,74036715,"Focus Features",108
+"Toy Story",1995,"Comedy","Adventure","Animation","USA","John Lasseter",8.3,765250,"G","John Lasseter","Tom Hanks",3e+07,394436586,"Walt Disney Pictures",81
+"Inglourious Basterds",2009,"War","Drama","Adventure","USA","Quentin Tarantino",8.3,1082811,"R","Quentin Tarantino","Brad Pitt",7e+07,321457747,"Universal Pictures",153
+"Full Metal Jacket",1987,"Drama","War",NA,"USA","Stanley Kubrick",8.3,590594,"R","Stanley Kubrick","Matthew Modine",3e+07,46357676,"Natant",116
+"Good Will Hunting",1997,"Drama","Romance",NA,"USA","Gus Van Sant",8.3,743204,"R","Matt Damon","Robin Williams",1e+07,225933435,"Miramax",126
+"Toy Story 3",2010,"Comedy","Adventure","Animation","USA","Lee Unkrich",8.3,660322,"G","John Lasseter","Tom Hanks",2e+08,1066970811,"Walt Disney Pictures",103
+"Scarface",1983,"Drama","Crime",NA,"USA","Brian De Palma",8.3,644950,"R","Oliver Stone","Al Pacino",2.5e+07,65884703,"Universal Pictures",170
+"L.A. Confidential",1997,"Drama","Thriller","Mystery","USA","Curtis Hanson",8.3,482362,"R","James Ellroy","Kevin Spacey",3.5e+07,126216940,"New Regency Productions",138
+"Indiana Jones and the Last Crusade",1989,"Adventure","Fantasy","Action","USA","Steven Spielberg",8.2,615110,"PG-13","Jeffrey Boam","Harrison Ford",4.8e+07,474171806,"Paramount Pictures",127
+"Up",2009,"Adventure","Comedy","Animation","USA","Pete Docter",8.3,817536,"PG","Pete Docter","Edward Asner",1.75e+08,735099102,"Pixar Animation Studios",96
+"Batman Begins",2005,"Adventure","Action","Thriller","USA","Christopher Nolan",8.3,1160328,"PG-13","Bob Kane","Christian Bale",1.5e+08,373661946,"Warner Bros.",140
+"Unforgiven",1992,"Drama","Western",NA,"USA","Clint Eastwood",8.2,331944,"R","David Webb Peoples","Clint Eastwood",14400000,159157447,"Warner Bros.",130
+"Die Hard",1988,"Action","Thriller",NA,"USA","John McTiernan",8.2,701825,"R","Roderick Thorp","Bruce Willis",2.8e+07,141603197,"Twentieth Century Fox",132
+"Heat",1995,"Drama","Thriller","Crime","USA","Michael Mann",8.2,511042,"R","Michael Mann","Al Pacino",6e+07,187436818,"Warner Bros.",170
+"Incendies",2010,"Drama","War","Mystery","Canada","Denis Villeneuve",8.2,118365,"R","Denis Villeneuve","Lubna Azabal",6800000,7099598,"micro_scope",131
+"Raging Bull",1980,"Drama","Biography","Sport","USA","Martin Scorsese",8.2,280338,"R","Jake LaMotta","Robert De Niro",1.8e+07,23402427,"Chartoff-Winkler Productions",129
+"Bohemian Rhapsody",2018,"Drama","Biography","Music","USA","Bryan Singer",8.3,160843,"PG-13","Anthony McCarten","Rami Malek",5.2e+07,911902649,"Twentieth Century Fox",134
+"Ran",1985,"Drama","Action",NA,"France","Akira Kurosawa",8.2,97041,"R","Akira Kurosawa","Tatsuya Nakadai",11500000,4164283,"Greenwich Film Productions",162
+"A Beautiful Mind",2001,"Drama","Biography",NA,"USA","Ron Howard",8.2,748421,"PG-13","Akiva Goldsman","Russell Crowe",5.8e+07,316791257,"Universal Pictures",135
+"Casino",1995,"Drama","Crime",NA,"France","Martin Scorsese",8.2,402926,"R","Nicholas Pileggi","Robert De Niro",5.2e+07,116112375,"Universal Pictures",178
+"Three Billboards Outside Ebbing, Missouri",2017,"Drama","Comedy","Crime","USA","Martin McDonagh",8.2,304426,"R","Martin McDonagh","Frances McDormand",1.5e+07,160192267,"Blueprint Pictures",115
+"Inside Out",2015,"Comedy","Adventure","Animation","USA","Pete Docter",8.2,512181,"PG","Pete Docter","Amy Poehler",1.75e+08,858848019,"Pixar Animation Studios",95
+"Room",2015,"Drama","Thriller",NA,"Canada","Lenny Abrahamson",8.2,296996,"R","Emma Donoghue","Brie Larson",1.3e+07,35401758,"Element Pictures",118
+"The Wolf of Wall Street",2013,"Drama","Biography","Comedy","USA","Martin Scorsese",8.2,995724,"R","Terence Winter","Leonardo DiCaprio",1e+08,392000694,"Red Granite Pictures",180
+"V for Vendetta",2005,"Drama","Action","Thriller","Germany","James McTeigue",8.2,931242,"R","Lilly Wachowski","Hugo Weaving",5.4e+07,132511035,"Warner Bros.",132
+"Warrior",2011,"Drama","Sport",NA,"USA","Gavin O'Connor",8.2,395333,"PG-13","Gavin O'Connor","Tom Hardy",2.5e+07,23308615,"Lionsgate",140
+"Blade Runner",1982,"Thriller",NA,NA,"Hong Kong","Ridley Scott",8.2,609845,"R","Hampton Fancher","Harrison Ford",2.8e+07,41676878,"The Ladd Company",117
+"No Country for Old Men",2007,"Drama","Thriller","Crime","USA","Ethan Coen",8.1,744187,"R","Joel Coen","Tommy Lee Jones",2.5e+07,171627166,"Paramount Vantage",122
+"There Will Be Blood",2007,"Drama",NA,NA,"USA","Paul Thomas Anderson",8.1,451253,"R","Paul Thomas Anderson","Daniel Day-Lewis",2.5e+07,76182388,"Paramount Vantage",158
+"The Sixth Sense",1999,"Drama","Thriller","Mystery","USA","M. Night Shyamalan",8.1,823878,"PG-13","M. Night Shyamalan","Bruce Willis",4e+07,672806292,"Hollywood Pictures",107
+"The Thing",1982,"Horror","Mystery",NA,"USA","John Carpenter",8.1,321159,"R","Bill Lancaster","Kurt Russell",1.5e+07,19632053,"Universal Pictures",109
+"Fargo",1996,"Drama","Thriller","Crime","USA","Joel Coen",8.1,546802,"R","Ethan Coen","William H. Macy",7e+06,60611975,"PolyGram Filmed Entertainment",98
+"Gran Torino",2008,"Drama",NA,NA,"USA","Clint Eastwood",8.1,655216,"R","Nick Schenk","Clint Eastwood",3.3e+07,269958228,"Matten Productions",116
+"Finding Nemo",2003,"Adventure","Comedy","Animation","USA","Andrew Stanton",8.1,841886,"G","Andrew Stanton","Albert Brooks",9.4e+07,940352645,"Pixar Animation Studios",100
+"The Big Lebowski",1998,"Comedy","Crime",NA,"USA","Joel Coen",8.1,643306,"R","Ethan Coen","Jeff Bridges",1.5e+07,46748721,"Polygram Filmed Entertainment",117
+"Shutter Island",2010,"Thriller","Mystery",NA,"USA","Martin Scorsese",8.1,971812,"R","Laeta Kalogridis","Leonardo DiCaprio",8e+07,294805697,"Paramount Pictures",138
+"Kill Bill: Vol. 1",2003,"Action","Thriller","Crime","USA","Quentin Tarantino",8.1,878087,"R","Quentin Tarantino","Uma Thurman",3e+07,180906076,"Miramax",111
+"Hacksaw Ridge",2016,"Drama","Biography","War","USA","Mel Gibson",8.1,346132,"R","Robert Schenkkan","Andrew Garfield",4e+07,180563636,"Summit Entertainment",139
+"Gone Girl",2014,"Drama","Thriller","Mystery","USA","David Fincher",8.1,733285,"R","Gillian Flynn","Ben Affleck",6.1e+07,369330363,"Twentieth Century Fox",149
+"How to Train Your Dragon",2010,"Comedy","Adventure","Animation","USA","Dean DeBlois",8.1,588170,"PG","William Davies","Jay Baruchel",1.65e+08,494879471,"DreamWorks Animation",98
+"Jurassic Park",1993,"Adventure","Thriller",NA,"USA","Steven Spielberg",8.1,758947,"PG-13","Michael Crichton","Sam Neill",6.3e+07,1033928303,"Universal Pictures",127
+"Into the Wild",2007,"Drama","Biography","Adventure","USA","Sean Penn",8.1,512630,"R","Sean Penn","Emile Hirsch",1.5e+07,56675895,"Paramount Vantage",148
+"In the Name of the Father",1993,"Drama","Biography",NA,"UK","Jim Sheridan",8.1,137634,"R","Gerry Conlon","Daniel Day-Lewis",1.3e+07,65796862,"Hell's Kitchen Films",133
+"The Truman Show",1998,"Drama","Comedy",NA,"USA","Peter Weir",8.1,811714,"PG","Andrew Niccol","Jim Carrey",6e+07,264118201,"Paramount Pictures",103
+"The Grand Budapest Hotel",2014,"Drama","Comedy","Adventure","USA","Wes Anderson",8.1,612840,"R","Stefan Zweig","Ralph Fiennes",2.5e+07,172945750,"Fox Searchlight Pictures",99
+"Platoon",1986,"Drama","War",NA,"USA","Oliver Stone",8.1,343583,"R","Oliver Stone","Charlie Sheen",6e+06,138545632,"Hemdale",120
+"Stand by Me",1986,"Drama","Adventure",NA,"USA","Rob Reiner",8.1,325574,"R","Stephen King","Wil Wheaton",8e+06,52287414,"Columbia Pictures",89
+"Hotel Rwanda",2004,"Drama","Biography","War","South Africa","Terry George",8.1,307299,"PG-13","Keir Pearson","Don Cheadle",17500000,33882243,"United Artists",121
+"12 Years a Slave",2013,"Drama","Biography","History","USA","Steve McQueen",8.1,559253,"R","John Ridley","Chiwetel Ejiofor",2e+07,187733202,"New Regency Productions",134
+"Million Dollar Baby",2004,"Drama","Sport",NA,"USA","Clint Eastwood",8.1,572767,"PG-13","Paul Haggis","Hilary Swank",3e+07,216763646,"Warner Bros.",132
+"Rush",2013,"Drama","Biography","Action","Germany","Ron Howard",8.1,382423,"R","Peter Morgan","Daniel Brühl",3.8e+07,96983009,"Exclusive Media Group",123
+"Before Sunrise",1995,"Drama","Romance",NA,"Switzerland","Richard Linklater",8.1,230713,"R","Richard Linklater","Ethan Hawke",2500000,5987386,"Castle Rock Entertainment",101
+"Mad Max: Fury Road",2015,"Adventure","Action","Thriller","USA","George Miller",8.1,751310,"R","George Miller","Tom Hardy",1.5e+08,375658750,"Warner Bros.",120
+"Prisoners",2013,"Drama","Thriller","Mystery","USA","Denis Villeneuve",8.1,507543,"R","Aaron Guzikowski","Hugh Jackman",4.6e+07,122126687,"Alcon Entertainment",153
+"Spotlight",2015,"Drama","History","Crime","USA","Tom McCarthy",8.1,346838,"R","Josh Singer","Mark Ruffalo",2e+07,98690254,"Participant",129
+"Logan",2017,"Drama","Action","Thriller","USA","James Mangold",8.1,525287,"R","James Mangold","Hugh Jackman",9.7e+07,619179950,"Twentieth Century Fox",137
+"The Princess Bride",1987,"Romance","Fantasy","Adventure","USA","Rob Reiner",8.1,348679,"PG","William Goldman","Cary Elwes",1.6e+07,30902642,"Act III Communications",98
+"Catch Me If You Can",2002,"Drama","Biography","Crime","Canada","Steven Spielberg",8.1,689344,"PG-13","Jeff Nathanson","Leonardo DiCaprio",5.2e+07,352114312,"Dreamworks Pictures",141
+"Harry Potter and the Deathly Hallows: Part 2",2011,"Drama","Fantasy","Adventure","USA","David Yates",8.1,670287,"PG-13","Steve Kloves","Daniel Radcliffe",1.25e+08,1342321665,"Warner Bros.",130
+"Monsters, Inc.",2001,"Comedy","Adventure","Animation","USA","Pete Docter",8.1,715474,"G","Pete Docter","Billy Crystal",1.15e+08,579707738,"Pixar Animation Studios",92
+"Dead Poets Society",1989,"Drama","Comedy",NA,"USA","Peter Weir",8.1,353575,"PG","Tom Schulman","Robin Williams",16400000,235860116,"Touchstone Pictures",128
+"Donnie Darko",2001,"Drama","Thriller",NA,"USA","Richard Kelly",8.1,682933,"R","Richard Kelly","Jake Gyllenhaal",6e+06,6981586,"Pandora Cinema",113
+"The Terminator",1984,"Action",NA,NA,"USA","James Cameron",8,709323,"R","James Cameron","Arnold Schwarzenegger",6400000,78371200,"Cinema '84",107
+"Gandhi",1982,"Drama","Biography","History","India","Richard Attenborough",8.1,203124,"PG","John Briley","Ben Kingsley",2.2e+07,52767889,"International Film Investors",191
+"Groundhog Day",1993,"Comedy","Romance","Fantasy","USA","Harold Ramis",8,527321,"PG","Danny Rubin","Bill Murray",14600000,71074049,"Columbia Pictures",101
+"The Help",2011,"Drama",NA,NA,"India","Tate Taylor",8.1,382422,"PG-13","Tate Taylor","Emma Stone",2.5e+07,216639112,"DreamWorks",146
+"Before Sunset",2004,"Drama","Romance",NA,"USA","Richard Linklater",8.1,201622,"R","Richard Linklater","Ethan Hawke",2700000,15936507,"Warner Independent Pictures (WIP)",80
+"Blade Runner 2049",2017,"Drama","Thriller","Mystery","Canada","Denis Villeneuve",8,351618,"R","Hampton Fancher","Harrison Ford",1.5e+08,259334548,"Alcon Entertainment",164
+"La La Land",2016,"Comedy","Romance","Music","Hong Kong","Damien Chazelle",8,409442,"PG-13","Damien Chazelle","Ryan Gosling",3e+07,448906865,"Summit Entertainment",128
+"Guardians of the Galaxy",2014,"Adventure","Comedy","Action","USA","James Gunn",8.1,894940,"PG-13","James Gunn","Chris Pratt",1.7e+08,773350147,"Marvel Studios",121
