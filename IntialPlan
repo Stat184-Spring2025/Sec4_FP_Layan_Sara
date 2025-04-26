@@ -1,0 +1,32 @@
+Goal: Create visualizations to explore our hypothesis and answer some research questions:
+- Do movies with higher budgets tend to generate higher worldwide gross earnings?
+- Are certain genres associated with higher average ratings?
+- Do some directors consistently have higher IMDB ratings than others? Which directors have the most movies in the Top 250 list?
+- Is there a trend between movie release year and IMDB rating?
+
+Needs:
+We will need the datasets,functions to read datasets, different R packages, wrangling and tidying verbs, ggplot and kable
+functions to visualize, piping operations
+
+Steps:
+1.  Install and load the data
+2.  View the data and inspect if tidy or not
+3.  Clean data 
+    1. Remove unnecessary rows/columns
+    2. Rename columns
+    3. Remove NA values 
+4. Join/Merge the two datasets through a common column (movie names)
+5. Analyse the merged dataset
+    1. Create summary or frequency tables
+    2. Style and showcase the tables
+    3. Look out for cases that might not make sense 
+6. Create the visualizations
+    1. Scatter plot, Line chart, Histogram, etc
+    2. Label axes, title and legend 
+    3. Customize the graphs and make them accessible
+7. Debugging and improving code
+8. Describe the trends and patterns in narrative texts
+9. Create a QMD report for the findings then render to a PDF
+10. Cite the sources 
+11. Code Appendix 
+
