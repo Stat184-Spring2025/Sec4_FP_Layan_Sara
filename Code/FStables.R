@@ -1,3 +1,4 @@
+
 # Load packages:
 library(dplyr)
 library(janitor)
@@ -46,6 +47,7 @@ IMDBTable %>%
     font_size =  12
   ) %>%
   row_spec(0, bold=TRUE, background = "lightblue" )
+
 
 
 
