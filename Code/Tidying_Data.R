@@ -58,5 +58,24 @@ write.csv(
 
 
 
+#Potential new data to use----
+#reading and viewing the new dataset----
+url1 <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/main/Data/Movie.csv"
+PotMoviesRaw <- read.csv(url1, header = TRUE)
+#view(MoviesGrossRaw)
+
+#Tidy the movie data----
+PotMoviesTidy <- PotMoviesRaw%>%
+  select(-c("X","popularity", "release_date" , "runtime", "vote_average",
+            "vote_count","Number_Genres"))
+
+
+# Megring the two datasets -----
+JoinedIMDB <- IMDBRatingTidy %>%
+  left_join(PotMoviesTidy, by = c("Title" = "title") )%>%
+  filter(!is.na(production_companies)) 
+#view(JoinedIMDB) 
+
+
 
 
