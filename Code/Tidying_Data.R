@@ -45,6 +45,7 @@ JoinedIMDB <- IMDBRatingTidy %>%
   left_join(MoviesGrossTidy, by = c("Title" = "name", "Year" = "year")) %>%
   filter(!is.na(runtime)) %>%
   filter(!is.na(budget))
+  
 
 # View the joined and tidy data
 #View(JoinedIMDB)
@@ -58,5 +59,29 @@ write.csv(
 
 
 
+#Potential new data to use----
+#reading and viewing the new dataset----
+url1 <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/main/Data/Movie.csv"
+PotMoviesRaw <- read.csv(url1, header = TRUE)
+
+#view(MoviesGrossRaw)
+
+#Tidy the movie data----
+PotMoviesTidy <- PotMoviesRaw%>%
+  select(-c("X","popularity", "release_date" , "runtime", "vote_average",
+            "vote_count","Number_Genres","genres"))
 
 
+# Megring the two datasets -----
+JoinedMovies <- IMDBRatingTidy %>%
+  left_join(PotMoviesTidy, by = c("Title" = "title") )%>%
+  filter(!is.na(production_companies)) %>%
+  rename(
+    Genre = main_genre,
+    Origin = main_origin,
+    Rating = IMDB.rating,
+    `Rating Count` = Rating.count,
+    Budget = budget,
+    Company = `production_companies`,
+    Revenue = revenue
+  )
