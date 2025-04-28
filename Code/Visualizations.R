@@ -4,68 +4,79 @@
 library(dplyr)
 library(ggplot2)
 
-# Readl/load the joined dataset: -----
-url <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/main/Data/JoinedIMDB.csv"
-JoinedIMDB <- read.csv(url, header = TRUE)
-view(JoinedIMDB)
+# Read/load the joined dataset: -----
+url <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/main/Data/MoviesJoined.csv"
+MoviesJoined <- read.csv(url, header = TRUE)
+view(MoviesJoined)
 
 
+## Bar Chart -----
+# Which of the top 15 movie Stars have the most movies in the list?
+# Find top 15 Stars 
+DirectorCount <- MoviesJoined %>%
+  count(Star, sort = TRUE) %>%
+  slice_max(order_by = n, n = 15)   # Keep top 15 Star
 
-# Do movies with higher budgets tend to generate higher worldwide gross earnings?
-# Create a scatter plot of Budget vs Worldwide Gross
-JoinedIMDB %>%
-  ggplot(aes(x = budget, y = gross)) +
-  geom_point(alpha = 0.7) +                  # scatter points
-  geom_smooth(method = "lm", se = FALSE, color = "blue") +  # add a linear regression line
-  labs(
-    title = "Relationship Between Budget and Worldwide Gross",
-    x = "Budget (in dollars)",
-    y = "Worldwide Gross (in dollars)"
-  ) +
-  theme_minimal()
-
-
-
-
-# Which of the top 10 directors have the most movies in the list?
-# Finde top 10 Directors 
-DirectorCount <- JoinedIMDB %>%
-  count(Director, sort = TRUE) %>%
-  slice_max(order_by = n, n = 10)   # Keep top 10 directors
-
-# Plot: Bar chart of number of movies by director
+# Plot: Bar chart of number of movies by stars
 DirectorCount %>%
-  ggplot(aes(x = reorder(Director, n), y = n)) +
+  ggplot(aes(x = reorder(Star, n), y = n)) +
   geom_col(fill = "steelblue") +
   coord_flip() +
   labs(
-    title = "Top 15 Directors by Number of Movies in IMDB",
-    x = "Director",
+    title = "Top 15 Stars by Number of Movies",
+    x = "Star",
     y = "Number of Movies"
   ) +
   theme_minimal()
 
 
-
-
-# Are certain genres (top 5) associated with higher average ratings?
+## Box Plot -----
+# Do the Top 5 most common genres show differences in their average ratings?
 # Find the top 5 genres by count
-TopGenres <- JoinedIMDB %>%
-  count(main_genre, sort = TRUE) %>%
+TopGenres <- MoviesJoined %>%
+  count(Genre, sort = TRUE) %>%
   slice_max(order_by = n, n = 5) %>%
-  pull(main_genre)
+  pull(Genre)
 
 # Filter data for only the Top 5 genres
-JoinedIMDB %>%
-  filter(main_genre %in% TopGenres) %>%
-  ggplot(aes(x = main_genre,
-             y = IMDB.rating)) +
+MoviesJoined %>%
+  filter(Genre %in% TopGenres) %>%
+  # Create the box plot
+  ggplot(aes(x = Genre,
+             y = Rating)) +
   geom_boxplot(fill = "lightpink") +
   coord_flip() +
   labs(
-    title = "Distribution of IMDB Ratings for Top 5 Genres",
-    x = "Main Genre",
-    y = "IMDB Rating"
+    title = "Distribution of Ratings for Top 5 Genres",
+    x = "Top Genres",
+    y = "Rating"
   ) +
   theme_minimal()
+
+
+# Plot Chart -------
+# Do movies with higher RunTime tend to receive higher audience ratings?
+  ggplot(MoviesJoined, aes(x = RunTime, y = Rating)) +
+  geom_point(alpha=0.7) +
+  labs(
+    title = "Relationship Between Movie Runtime and Audience Rating",
+    x = "Runtime (minutes)",
+    y = "Rating"
+  ) +
+  theme_minimal()
+
+# RatingCount and Rating
+ggplot(MoviesJoined, aes(x = RatingCount, y = Rating)) +
+  geom_point(alpha = 0.8, size = 1.5) +
+  labs(
+    title = "Relationship Between Rating Count and Audience Rating",
+    x = "Number of Ratings (in Thousands)",
+    y = "Audience Rating"
+  ) +
+  theme_minimal()
+
+
+
+
+
 
