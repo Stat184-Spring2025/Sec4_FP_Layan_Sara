@@ -12,9 +12,8 @@ url2 <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara
 MoviesMainRaw <- read.csv(url2, header = TRUE)
 
 #View data
-view(MoviesMainRaw)
-view(MoviesSubRaw)
-
+#view(MoviesMainRaw)
+#view(MoviesSubRaw)
 
 
 # Tidying Movies Gross Data ----
@@ -27,23 +26,36 @@ MoviesMainTidy <- MoviesMainRaw%>%
             "vote_count","Number_Genres"))
 
 #Merging other two datasets----
-MoviesJ <- MoviesMainTidy%>%
+MoviesJoined <- MoviesMainTidy%>%
   inner_join(MoviesSubTidy, by = c("title"="name","production_companies"="company") )%>%
   rename(
-    Budget = budget,
+    Title = title,
     Genre = genres,
     Company = `production_companies`,
-    Revenue = revenue,
-    `Run Time`= runtime,
-    Title = title,
-    `Age Rating`= rating,
+    AgeRating= rating,
     Year = year,
     Rating = score,
-    `Rating Count` = votes,
+    RatingCount = votes,
     Director = director,
     Writer = writer,
     Star = star,
-    Country = country,
+    Budget = budget,
+    Revenue = revenue,
+    RunTime= runtime,
+    Country = country
   )
 
-view(MoviesJ)
+# Re-order the columns
+MoviesJoined <- MoviesJoined %>%
+  select(Title, Genre, Company, AgeRating, Year,
+         Rating, RatingCount, Director, Writer, Star, Budget, Revenue,
+         RunTime, Country)
+view(MoviesJoined)
+
+# Create a csv file and save it ----
+write.csv(
+  MoviesJoined,
+  file = "MoviesJoined.csv",
+  row.names = FALSE
+)
+
