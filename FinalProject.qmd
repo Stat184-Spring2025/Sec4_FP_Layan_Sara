@@ -1,0 +1,65 @@
+---
+title: "Exploring Factors Influencing Movie Success"
+author: 
+  - "Sara Al Riyami"
+  - "Layan Al Busaidi"
+date: "April 28, 2025"
+date-modified: now
+format:
+  pdf:
+    toc: false
+    cap-location: top
+    fig-align: center
+    geometry: 
+    - top=1in
+    - left=1in
+    - right=1in
+    - bottom=1in
+execute: 
+  echo: false
+  warning: false
+  error: false
+---
+
+```{r}
+#| label: Load Packages 
+# Load all necessary packages -----
+library(tidyverse)
+library(rvest)
+library(dplyr)
+library(janitor)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+```
+
+# Introduction
+
+# Hypotheses and Research Questions
+
+# Data Provenance
+
+## Main Dataset
+
+## Secondary Dataset
+
+## Merged and Final Dataset
+
+# FAIR and CARE Principles
+
+# EDA: Exploratory Data Analysis
+
+## Summary/Frequency Table
+
+# Data Visualizations
+
+# Conclusion
+
+# Sources and References
+
+
+{{< pagebreak >}}
+# Code Appendix
+```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+```
+
