@@ -11,11 +11,11 @@ view(MoviesJoined)
 
 
 ## Bar Chart -----
-# Which of the top 15 movie Stars have the most movies in the list?
-# Find top 15 Stars 
+# Which of the top 12 movie Stars have the most movies in the list?
+# Find top 12 Stars 
 DirectorCount <- MoviesJoined %>%
   count(Star, sort = TRUE) %>%
-  slice_max(order_by = n, n = 15)   # Keep top 15 Star
+  slice_max(order_by = n, n = 12)   # Keep top 12 Star
 
 # Plot: Bar chart of number of movies by stars
 DirectorCount %>%
@@ -23,7 +23,7 @@ DirectorCount %>%
   geom_col(fill = "steelblue") +
   coord_flip() +
   labs(
-    title = "Top 15 Stars by Number of Movies",
+    title = "Top 12 Stars by Number of Movies",
     x = "Star",
     y = "Number of Movies"
   ) +
