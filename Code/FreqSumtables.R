@@ -95,16 +95,16 @@ budget_summary%>%
 Genre_summary <- MoviesJoined%>%
   group_by(Genre)%>%      #groups the data by Genre
   summarise(            #summarises the data by the 8 statistics
-    film_count = n(),
-    min_genre = min(Rating, na.rm = TRUE),
-    Q1_genre = quantile(Rating, 0.25, na.rm = TRUE),
-    median_genre = median(Rating, na.rm = TRUE),
-    Q3_genre = quantile(Rating, 0.75, na.rm = TRUE),
-    mean_genre = mean(Rating, na.rm = TRUE),
-    max_genre = max(Rating, na.rm = TRUE),
-    sd_genre = sd(Rating, na.rm = TRUE)
+    FilmCount = n(),
+    MinRating = min(Rating, na.rm = TRUE),
+    Q1Rating = quantile(Rating, 0.25, na.rm = TRUE),
+    MedianRating = median(Rating, na.rm = TRUE),
+    Q3Rating = quantile(Rating, 0.75, na.rm = TRUE),
+    MeanRating = mean(Rating, na.rm = TRUE),
+    MaxRating = max(Rating, na.rm = TRUE),
+    SdRating = sd(Rating, na.rm = TRUE)
   ) %>%
-  arrange(desc(film_count))%>%  #arranges data by film count
+  arrange(desc(FilmCount))%>%  #arranges data by film count
   slice_head(n=5)   #Keeps the top 5 movie genres
 
 #Styling the summary table----

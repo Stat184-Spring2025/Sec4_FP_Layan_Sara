@@ -76,7 +76,31 @@ ggplot(MoviesJoined, aes(x = RatingCount, y = Rating)) +
   theme_minimal()
 
 
+#Which production companies have the highest average profit.
+#Tidying data to create a bar chart
+CompanyProfit <- MoviesJoined%>%
+  group_by(Company)%>%
+  summarise(
+    AverageProfit = mean(Profit, na.rm = TRUE),
+    MovieCount = n()
+  )%>%
+  filter(MovieCount >= 5) %>%
+  arrange(desc(AverageProfit)) # Sorting by AverageProfit in descending order 
+#view(CompanyProfit)
 
-
-
-
+#Visualization.
+CompanyProfit %>%
+  slice_max(AverageProfit, n = 15) %>%
+  ggplot(aes(x = reorder(Company, AverageProfit), y = AverageProfit)) +
+  geom_col(fill = "dodgerblue") +
+  coord_flip() +
+  labs(
+    title = "Top 15 Production Companies by Average Profit",
+    x = "Production Company",
+    y = "Average Profit (USD)"
+  ) +
+  theme(
+    axis.title = element_text(face = "bold"),  # Make axis titles bold
+    axis.text = element_text(face = "bold")    # Make axis tick labels bold
+  )+
+  theme_minimal()
