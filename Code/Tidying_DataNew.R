@@ -49,8 +49,9 @@ MoviesJoined <- MoviesMainTidy%>%
 MoviesJoined <- MoviesJoined %>%
   select(Title, Genre, Company, AgeRating, Year,
          Rating, RatingCount, Director, Writer, Star, Budget, Revenue,
-         RunTime, Country)
-view(MoviesJoined)
+         RunTime, Country)%>%
+  mutate(Profit = Revenue-Budget)
+#view(MoviesJoined)
 
 # Create a csv file and save it ----
 write.csv(
