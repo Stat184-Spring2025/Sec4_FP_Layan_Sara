@@ -1,13 +1,17 @@
 ---
 title: "Exploring Factors Influencing Movie Success"
+subtitle: "Stat 184 Final Project"
 author: 
   - "Sara Al Riyami"
   - "Layan Al Busaidi"
 date: "April 28, 2025"
 date-modified: now
+date-format: long
 format:
   pdf:
     toc: false
+    number-depth: 5
+    number-sections: true
     cap-location: top
     fig-align: center
     geometry: 
@@ -15,6 +19,7 @@ format:
     - left=1in
     - right=1in
     - bottom=1in
+    colorlinks: true
 execute: 
   echo: false
   warning: false
@@ -49,9 +54,9 @@ library(ggplot2)
 
 # EDA: Exploratory Data Analysis
 
-## Summary/Frequency Table
-
-# Data Visualizations
+## Genre and Rating
+### Summary
+### Box Plot
 
 # Conclusion
 
