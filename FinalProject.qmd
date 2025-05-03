@@ -42,6 +42,14 @@ library(ggplot2)
 
 # Hypotheses and Research Questions
 
+1. How do audience ratings compare across the five most common movie genres?
+
+2. Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
+
+3. Who are the most frequently featured stars among in the movie dataset?
+
+
+
 # Data Provenance
 
 ## Main Dataset
