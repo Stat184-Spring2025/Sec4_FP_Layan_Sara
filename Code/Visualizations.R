@@ -9,6 +9,10 @@ url <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/
 MoviesJoined <- read.csv(url, header = TRUE)
 view(MoviesJoined)
 
+# Define global elements ----
+psuPalette <- c("#1E407C", "#BC204B", "#3EA39E", "#E98300",
+                "#999999", "#AC8DCE", "#F2665E", "#99CC00")
+
 
 ## Bar Chart -----
 # Which of the top 12 movie Stars have the most movies in the list?
@@ -104,3 +108,77 @@ CompanyProfit %>%
     axis.text = element_text(face = "bold")    # Make axis tick labels bold
   )+
   theme_minimal()
+
+
+
+# Production Companies Making Kid Movies Profit 
+TopMovies <- MoviesJoined%>%
+  filter(Company %in% c("Walt Disney Pictures",
+                        "Warner Bros.",
+                        "Universal Pictures",
+                        "Columbia Pictures",
+                        "DreamWorks Animation"))
+#view(TopMovies)
+ggplot(data = TopMovies, 
+       mapping = aes(
+         x = Budget, 
+         y = Profit, 
+         color = Company
+         )
+       ) +
+  geom_point(size = 3) +
+  labs(
+    title = "Profit per Movie by Company (G & PG Rated)",
+    x = "Budget",
+    y = "Profit (USD)",
+    color = "Company"
+    ) +
+  scale_color_manual(
+    values = psuPalette
+    )+
+  theme_bw() +
+  theme(
+    legend.position = "right"
+    )
+
+
+
+
+
+
+# WORK IN PROGRESS:
+# Rating of the top stars over times
+TopStars <- c("Nicolas Cage",
+              "Adam Sandler",
+              "Denzel Washington",
+              "Dwayne Johnson",
+              "Tom Cruise",
+              "Tom Hanks")
+
+StarMovies <- MoviesJoined%>%
+  filter(Star %in% TopStars)
+view(StarMovies)
+
+RatingYear <- StarMovies%>%
+  group_by(Star,Year)%>%
+  summarise(AverageRating = mean(Rating, na.rm = TRUE)) %>%
+  ungroup()
+
+all_years <- data.frame(Star = rep(TopStars, each = length(unique(RatingYear$Year))),
+                        Year = rep(unique(RatingYear$Year), times = length(TopStars)))
+
+StarRatingsByYearFull <- all_years %>%
+  left_join(RatingYear, by = c("Star", "Year")) %>%
+  replace_na(list(AverageRating = 0))  # Replace missing ratings with 0
+
+# 4. Plot with a smoother line and handle missing years
+ggplot(StarRatingsByYearFull, aes(x = Year, y = AverageRating, color = Star)) +
+  geom_line(size = 1) +
+  geom_smooth(method = "loess", se = FALSE, linetype = "dashed", size = 1) +  # Smoothed line
+  labs(title = "Actor Ratings Over Time", 
+       x = "Year", 
+       y = "Average Rating",
+       color = "Actor") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
+
