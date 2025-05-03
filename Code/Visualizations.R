@@ -11,23 +11,25 @@ view(MoviesJoined)
 
 
 ## Bar Chart -----
-# Which of the top 12 movie Stars have the most movies in the list?
-# Find top 12 Stars 
-DirectorCount <- MoviesJoined %>%
+# Which of the top 10 movie Stars have the most movies in the list?
+# Find top 10 Stars 
+SatrCount <- MoviesJoined %>%
   count(Star, sort = TRUE) %>%
-  slice_max(order_by = n, n = 12)   # Keep top 12 Star
+  slice_max(order_by = n, n = 10)   # Keep top 10 Star
 
 # Plot: Bar chart of number of movies by stars
-DirectorCount %>%
+StarCount %>%
   ggplot(aes(x = reorder(Star, n), y = n)) +
-  geom_col(fill = "steelblue") +
+  geom_col(fill = "darkgreen") +
   coord_flip() +
   labs(
-    title = "Top 12 Stars by Number of Movies",
+    title = "Top 10 Stars by Number of Movies",
     x = "Star",
     y = "Number of Movies"
   ) +
   theme_minimal()
+
+
 
 
 ## Box Plot -----
@@ -76,31 +78,187 @@ ggplot(MoviesJoined, aes(x = RatingCount, y = Rating)) +
   theme_minimal()
 
 
-#Which production companies have the highest average profit.
-#Tidying data to create a bar chart
-CompanyProfit <- MoviesJoined%>%
-  group_by(Company)%>%
-  summarise(
-    AverageProfit = mean(Profit, na.rm = TRUE),
-    MovieCount = n()
-  )%>%
-  filter(MovieCount >= 5) %>%
-  arrange(desc(AverageProfit)) # Sorting by AverageProfit in descending order 
-#view(CompanyProfit)
 
-#Visualization.
+
+#Which production companies have the highest average profit.
+# Bar Chart with Profit
+#Calculate Profit per Company
+CompanyProfit <- MoviesJoined %>%
+  group_by(Company) %>%
+  summarize(AverageProfit = mean(Profit, na.rm = TRUE)) %>%
+  ungroup()
+# Get top 15 companies by number of movies
+top_companies <- MoviesJoined %>%
+  count(Company, sort = TRUE) %>%
+  slice_max(n, n = 15) %>%
+  pull(Company)
+#Filter to top companies and plot
 CompanyProfit %>%
-  slice_max(AverageProfit, n = 15) %>%
+  filter(Company %in% top_companies) %>%
   ggplot(aes(x = reorder(Company, AverageProfit), y = AverageProfit)) +
   geom_col(fill = "dodgerblue") +
   coord_flip() +
   labs(
-    title = "Top 15 Production Companies by Average Profit",
+    title = "Profit of the 15 Most Active Production Companies",
     x = "Production Company",
-    y = "Average Profit (USD)"
+    y = " Profit (USD)"
   ) +
+  theme_minimal() +
   theme(
-    axis.title = element_text(face = "bold"),  # Make axis titles bold
-    axis.text = element_text(face = "bold")    # Make axis tick labels bold
-  )+
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 10, face = "bold"),
+    plot.title = element_text(size = 16, face = "bold")
+  )
+
+
+# Bar Chart with Profit
+#Calculate Average Budget per Company
+CompanyBudget <- MoviesJoined %>%
+  group_by(Company) %>%
+  summarize(AverageBudget = mean(Budget, na.rm = TRUE)) %>%
+  ungroup()
+#Filter to top companies and plot
+CompanyBudget %>%
+  filter(Company %in% top_companies) %>%
+  ggplot(aes(x = reorder(Company, AverageBudget), y = AverageBudget)) +
+  geom_col(fill = "darkorange") +
+  coord_flip() +
+  labs(
+    title = "Budget of the 15 Most Active Production Companies",
+    x = "Production Company",
+    y = "Budget (USD)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 10, face = "bold"),
+    plot.title = element_text(size = 16, face = "bold")
+  )
+
+
+
+CompanySummary <- MoviesJoined %>%
+  filter(Company %in% top_companies) %>%
+  group_by(Company) %>%
+  summarize(
+    AverageBudget = mean(Budget, na.rm = TRUE),
+    AverageProfit = mean(Profit, na.rm = TRUE)
+  ) %>%
+  ungroup()
+ggplot(CompanySummary, aes(x = AverageBudget, y = AverageProfit)) +
+  geom_point(color = "steelblue", size = 3) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", size = 1.2) +
+  labs(
+    title = "Relationship Between Budget and Profit of the Top 15 Companies",
+    x = "Budget (USD)",
+    y = "Profit (USD)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 10),
+    plot.title = element_text(size = 16, face = "bold")
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# LOLLIPOP
+
+# Count movies
+MovieCounts <- MoviesJoined %>%
+  filter(Company %in% top_companies) %>%
+  count(Company, name = "MovieCount")
+
+# Lollipop chart
+ggplot(MovieCounts, 
+       aes(x = reorder(Company, MovieCount), y = MovieCount)) +
+  geom_segment(
+    aes(xend = Company, y = 0, yend = MovieCount), 
+    color = "gray") +
+  geom_point(size = 5, 
+             color = "steelblue") +
+  coord_flip() +
+  labs(
+    title = "Number of Movies by Top 5 Most Profitable Companies",
+    x = "Company",
+    y = "Movie Count"
+  ) +
   theme_minimal()
+
+
+# PIE CHART
+
+MovieCounts <- MoviesJoined %>%
+  filter(Company %in% top_companies) %>%
+  count(Company, name = "MovieCount") %>%
+  arrange(desc(Company)) %>%
+  mutate(
+    Fraction = MovieCount / sum(MovieCount),
+    Ypos = cumsum(Fraction) - 0.5 * Fraction,
+    Label = paste0(MovieCount)
+  )
+
+# Step 3: Pie chart with counts inside
+ggplot(MovieCounts, aes(x = "", y = Fraction, fill = Company)) +
+  geom_col(width = 1, color = "white") +
+  coord_polar(theta = "y") +
+  geom_text(data = MovieCounts, aes(x = 1, y = Ypos, label = Label), 
+            color = "white", fontface = "bold", size = 5) +
+  labs(
+    title = "Proportion of Movies by Top 5 Most Profitable Companies",
+    fill = "Company"
+  ) +
+  theme_void() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    legend.title = element_text(face = "bold")
+  )
+
+
+
+
+
+
+# LINE CHART
+top_companies <- MoviesJoined %>%
+  count(Company, sort = TRUE) %>%
+  slice_max(n, n = 5) %>%
+  pull(Company)
+
+#Filter dataset and prepare average ratings by year and company
+MoviesJoined %>%
+  filter(!is.na(Year), !is.na(Profit), Company %in% top_companies) %>%
+  group_by(Company, Year) %>%
+  summarize(YearlyProfit = sum(Profit, na.rm = TRUE), .groups = "drop") %>%
+  arrange(Company, Year) %>%
+  group_by(Company) %>%
+  mutate(CumulativeProfit = cumsum(YearlyProfit)) %>%
+  ggplot(aes(x = Year, y = CumulativeProfit, color = Company, linetype = Company)) +
+  geom_line(size = 1.2) +
+  labs(
+    title = "Cumulative Profit Over Time for Top 5 Production Companies",
+    x = "Year",
+    y = "Cumulative Profit (USD)",
+    color = "Company",
+    linetype = "Company"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.title = element_text(size = 13, face = "bold"),
+    axis.text = element_text(size = 11)
+  )
+
+
+
