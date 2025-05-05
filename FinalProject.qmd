@@ -28,6 +28,8 @@ execute:
 
 ```{r}
 #| label: Load Packages 
+#| include: false
+
 # Load all necessary packages -----
 library(tidyverse)
 library(rvest)
@@ -36,19 +38,22 @@ library(janitor)
 library(knitr)
 library(kableExtra)
 library(ggplot2)
+
+#Define global elements ----
+psuPalette <- c("#1E407C", "#BC204B", "#3EA39E", "#E98300",
+                "#999999", "#AC8DCE", "#F2665E", "#99CC00")
+
 ```
 
 # Introduction
 
 # Hypotheses and Research Questions
 
-1. How do audience ratings compare across the five most common movie genres?
+1.  How do audience ratings compare across the five most common movie genres?
 
-2. Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
+2.  Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
 
-3. Who are the most frequently featured stars among in the movie dataset?
-
-
+3.  Who are the most frequently featured stars among in the movie dataset?
 
 # Data Provenance
 
@@ -57,22 +62,127 @@ library(ggplot2)
 ## Secondary Dataset
 
 ## Merged and Final Dataset
+```{r}
+#| label: LoadingReadingURL
+
+basePart <- "https://raw.githubusercontent.com/Stat184-Spring2025/"
+mainPart <- "Sec4_FP_Layan_Sara/main/Data/MoviesJoined.csv"
+url <- paste0(basePart,mainPart)
+MoviesJoined <- read.csv(url, header = TRUE)
+
+```
 
 # FAIR and CARE Principles
 
 # EDA: Exploratory Data Analysis
 
 ## Genre and Rating
+
 ### Summary
+
+```{r}
+#| label: MakeSummaryTable
+
+# Creating a summary table of Ratings by Genres ----
+
+Genre_summary <- MoviesJoined%>%
+  group_by(Genre)%>%      # Groups the data by Genre column
+  summarise(           # Calculates summary statistics for each genre
+    FilmCount = n(),      # Number of films in each genre
+    MinRating = min(Rating, na.rm = TRUE),   #Minimum rating (ignores NA values)
+    Q1Rating = quantile(Rating, 0.25, na.rm = TRUE),  # First quartile
+    MedianRating = median(Rating, na.rm = TRUE),      # Median rating
+    Q3Rating = quantile(Rating, 0.75, na.rm = TRUE),  # Third quartile
+    MeanRating = mean(Rating, na.rm = TRUE),     # Mean (average) rating
+    MaxRating = max(Rating, na.rm = TRUE),      # Maximum rating
+    SdRating = sd(Rating, na.rm = TRUE)        # Standard deviation of ratings
+  ) %>%
+  arrange(desc(FilmCount))%>%          # Sorts the genres by film count
+  slice_head(n=5)       # Selects the top 5 movie genres with the most films
+
+```
+
+```{r}
+#| label: tbl-GenreRating
+#| tbl-cap: "Rating Summary by Top 5 Movie Genres"
+#| html-table-processing: none
+#| caption-justification: center
+#| tbl-pos: "H"
+
+# Displaying the summary table ----
+Genre_summary%>%
+  kable(
+    booktabs = TRUE,                    
+    align = c("l", rep("c",8)) # Left-aligns the first column, centers the rest
+  )%>%
+  kableExtra::kable_styling(
+    bootstrap_options = c("striped","hover"),
+    font_size = 14          # Sets font size of the table
+  )%>%
+  row_spec(0, bold = TRUE, background = "#AC8DCE")%>%  # Styles the header
+  column_spec(1, italic = TRUE) # Styles the 1 column
+
+```
+
 ### Box Plot
+
+```{r}
+#| label: WrangleGRBoxPlot
+
+# Wrangling Data ----
+## Get Top 5 Genres 
+TopGenres <- MoviesJoined %>%
+  count(Genre, sort = TRUE) %>%  # Counts num of movies per genre and sorts them
+  slice_max(order_by = n, n = 5) %>%  # Selects top 5 genres w most movies 
+  pull(Genre)
+
+## Show data for only the Top 5 genres
+MovieGenre <- MoviesJoined %>%
+  filter(Genre %in% TopGenres)  # Filter movies of only the top 5 genres
+  
+```
+
+```{r}
+#| label: fig-GenreRatingBox
+#| fig-cap: "Distribution of Ratings for Top 5 Genres"
+#| fig-alt: "Box Plot showing distribution of ratings across top 5 genres"
+#| fig-pos: "H"
+#| fig-height: 5
+
+
+# Create the box plot for Genre and Ratings----
+ggplot(
+  data = MovieGenre,
+  mapping = aes(
+    x = Rating,      # Set the x-axis to represent Rating
+    y = Genre    # Set the y-axis to represent Genre
+  )
+) +     
+geom_boxplot(fill = "lightpink") +   # Creates box plot with pink boxes
+labs(                #labels the x and y axis
+  y = "Top Genres",
+  x = "Rating"
+) +
+theme_minimal()+
+theme(
+  text = element_text(size = 12),
+  axis.title.x = element_text(face = "bold",   # Make the x-axis title bold
+                              size = 14,    # Set font size to 14
+                              margin = margin(t = 15)
+                              ),
+  axis.title.y = element_text(face = "bold", 
+                              size = 14, 
+                              margin = margin(r = 15) 
+                              ) # margin pushes titles away from axis
+)
+
+```
 
 # Conclusion
 
 # Sources and References
 
+{{< pagebreak >}} \# Code Appendix
 
-{{< pagebreak >}}
-# Code Appendix
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 ```
-

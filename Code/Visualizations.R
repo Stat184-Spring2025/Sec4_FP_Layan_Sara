@@ -5,7 +5,9 @@ library(tidyr)
 library(ggplot2)
 
 # Read/load the joined dataset: -----
-url <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/main/Data/MoviesJoined.csv"
+basePart <- "https://raw.githubusercontent.com/Stat184-Spring2025/"
+mainPart <- "Sec4_FP_Layan_Sara/main/Data/MoviesJoined.csv"
+url <- paste0(basePart,mainPart)
 MoviesJoined <- read.csv(url, header = TRUE)
 #View(MoviesJoined)
 
@@ -20,24 +22,32 @@ psuPalette <- c("#1E407C", "#BC204B", "#3EA39E", "#E98300",
 
 ##1: Box Plot for the top 5 genres by count
 TopGenres <- MoviesJoined %>%
-  count(Genre, sort = TRUE) %>%
-  slice_max(order_by = n, n = 5) %>%
+  count(Genre, sort = TRUE) %>%  # Counts num of movies per genre and sorts them
+  slice_max(order_by = n, n = 5) %>%  # Selects top 5 genres w most movies 
   pull(Genre)
 
 # Filter data for only the Top 5 genres
 MoviesJoined %>%
-  filter(Genre %in% TopGenres) %>%
-  # Create the box plot
-  ggplot(aes(x = Genre,
-             y = Rating)) +
-  geom_boxplot(fill = "lightpink") +
-  coord_flip() +
-  labs(
+  filter(Genre %in% TopGenres) %>%  # Filter movies of only the top 5 genres
+# Create the box plot
+  ggplot(aes(x = Rating,   # Set the x-axis to represent Rating
+             y = Genre)) +   # Set the y-axis to represent Genre
+  geom_boxplot(fill = "lightpink") + # Creates box plot with pink boxes
+  labs(      #labels the x and y axis
     title = "Distribution of Ratings for Top 5 Genres",
-    x = "Top Genres",
-    y = "Rating"
+    y = "Top Genres",
+    x = "Rating"
   ) +
-  theme_minimal()
+  theme_minimal()+
+  theme(
+    text = element_text(size = 12),
+    axis.title.x = element_text(face = "bold",   # Make the x-axis title bold
+                                size = 14,    # Set font size to 14
+                                margin = margin(t = 15)),
+    axis.title.y = element_text(face = "bold", 
+                                size = 14, 
+                                margin = margin(r = 15))
+  ) # margin pushes title away from axis
 
 
 

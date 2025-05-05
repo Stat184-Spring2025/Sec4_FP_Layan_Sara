@@ -8,9 +8,11 @@ library(kableExtra)
 
 
 # Reading the Joined Data ------
-url <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/main/Data/MoviesJoined.csv"
+basePart <- "https://raw.githubusercontent.com/Stat184-Spring2025/"
+mainPart <- "Sec4_FP_Layan_Sara/main/Data/MoviesJoined.csv"
+url <- paste0(basePart,mainPart)
 MoviesJoined <- read.csv(url, header = TRUE)
-view(MoviesJoined)
+#View(MoviesJoined)
 
 
 # 1.Creating a frequency table ----
@@ -93,31 +95,31 @@ budget_summary%>%
 # Do Specific Genres affect the Movie Rating
 
 Genre_summary <- MoviesJoined%>%
-  group_by(Genre)%>%      #groups the data by Genre
-  summarise(            #summarises the data by the 8 statistics
-    FilmCount = n(),
-    MinRating = min(Rating, na.rm = TRUE),
-    Q1Rating = quantile(Rating, 0.25, na.rm = TRUE),
-    MedianRating = median(Rating, na.rm = TRUE),
-    Q3Rating = quantile(Rating, 0.75, na.rm = TRUE),
-    MeanRating = mean(Rating, na.rm = TRUE),
-    MaxRating = max(Rating, na.rm = TRUE),
-    SdRating = sd(Rating, na.rm = TRUE)
+  group_by(Genre)%>%      # Groups the data by Genre column
+  summarise(           # Calculates summary statistics for each genre
+    FilmCount = n(),      # Number of films in each genre
+    MinRating = min(Rating, na.rm = TRUE),   #Minimum rating (ignores NA values)
+    Q1Rating = quantile(Rating, 0.25, na.rm = TRUE),  # First quartile
+    MedianRating = median(Rating, na.rm = TRUE),      # Median rating
+    Q3Rating = quantile(Rating, 0.75, na.rm = TRUE),  # Third quartile
+    MeanRating = mean(Rating, na.rm = TRUE),     # Mean (average) rating
+    MaxRating = max(Rating, na.rm = TRUE),      # Maximum rating
+    SdRating = sd(Rating, na.rm = TRUE)        # Standard deviation of ratings
   ) %>%
-  arrange(desc(FilmCount))%>%  #arranges data by film count
-  slice_head(n=5)   #Keeps the top 5 movie genres
+  arrange(desc(FilmCount))%>%          # Sorts the genres by film count
+  slice_head(n=5)       # Selects the top 5 movie genres with the most films
 
 #Styling the summary table----
 Genre_summary%>%
   kable(
-    caption = "Rating Summary By Genre",
-    booktabs = TRUE,
-    align = c("l", rep("c",8))
+    caption = "Rating Summary By Genre",   # Adds a table caption
+    booktabs = TRUE,                    
+    align = c("l", rep("c",8)) # Left-aligns the first column, centers the rest
   )%>%
   kableExtra::kable_styling(
     bootstrap_options = c("striped","hover"),
-    font_size = 16
+    font_size = 16          # Sets font size of the table
   )%>%
-  row_spec(0, bold = TRUE, background = "lightyellow")%>%
-  column_spec(1, italic = TRUE, background = "lightgrey")
+  row_spec(0, bold = TRUE, background = "#AC8DCE")%>%  # Styles the header
+  column_spec(1, italic = TRUE, background = "lightgrey") # Styles the 1 column
 
