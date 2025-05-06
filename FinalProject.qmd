@@ -92,7 +92,11 @@ FAIR SARA CARE LAYAN
 
 # EDA: Exploratory Data Analysis
 
-LAYAN
+In our project, we used Exploratory Data Analysis to understand the structure of our datasets and uncover any errors or patterns before diving into deeper analysis. We began by cleaning and wrangling the data to ensure it was accurate and usable. This included identifying and removing rows with missing values (NAs), as well as fixing inconsistencies.
+
+After cleaning the data, we created frequency and summary tables to examine key statistics such as the mean, median, and standard deviation, giving us a clearer picture of the overall distribution of variables like ratings. We then used visualizations to uncover patterns and relationships that weren’t immediately apparent from the summary statistics alone.
+
+Through EDA, we were able to detect  irregularities in our dataset, gain a better understanding of its overall structure, and identify key trends that guided our analysis. This process provided a strong foundation for answering our research questions and exploring the factors that contribute to a movie’s success.
 
 ## Genre and Rating
 
