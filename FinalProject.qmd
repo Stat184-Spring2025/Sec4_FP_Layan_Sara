@@ -100,9 +100,11 @@ Through EDA, we were able to detect irregularities in our dataset, gain a better
 
 ## Genre and Rating
 
-LAYAN
+In this section, we will explore how audience ratings vary across the five most common movie genres. We begin by examining the summary statistics to better understand the distribution of ratings within each genre.
 
 ### Summary Table
+
+We created a **summary table** that highlights key statistics such as *film count, minimum, maximum, mean, median, standard deviation, and the 1st and 3rd quartiles*. This helps us better understand the distribution and variation in ratings across genres. @tbl-GenreRating below showcases these statistics for the top genres.
 
 ```{r}
 #| label: MakeSummaryTable
@@ -149,7 +151,16 @@ Genre_summary%>%
 
 ```
 
+@tbl-GenreRating presents an overview of the ratings for the top five movie genres: Comedy, Drama, Action, Adventure, and Horror. Among these, **Drama** clearly stands out as the highest-rated genre, with a **mean rating** of __6.91__, a **median** of __7.0__, and a **maximum rating** of __9.3__. It also shows the most consistent performance, having the **lowest standard deviation** among all genres. In contrast, **Horror** ranks the lowest, with an **average rating** of __5.97__ and the **widest spread** in ratings, indicating more variability in audience reception. The other genres fall in between, though **Adventure** shows a high level of variability similar to Horror.
+
+When looking at film counts, **Comedy** and **Drama** are the most represented, each with over __200 films__, while **Horror** has the lowest count with just __77 films__, which may contribute to its greater rating variability.
+
+Overall, the data suggests that Drama is both the most consistently high-performing genre and the best-rated on average, whereas Horror tends to be more unpredictable and generally receives lower ratings.
+
+
 ### Box Plot
+
+@fig-GenreRatingBox shows a box plot of the rating distributions for the top five movie genres. This visual helps us compare the typical ratings, variation, and presence of outliers across genres. It supports and expands on the summary statistics discussed earlier.
 
 ```{r}
 #| label: WrangleGRBoxPlot
