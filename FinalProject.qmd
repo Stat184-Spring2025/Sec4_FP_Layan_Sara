@@ -46,15 +46,19 @@ psuPalette <- c("#1E407C", "#BC204B", "#3EA39E", "#E98300",
 
 # Introduction
 
-LAYAN
+Movies are a huge part of our lives and a multi-billion-dollar industry that shapes and reflects society. With millions of people watching and reviewing films every year, the movie industry continues to evolve. Thousands of films are released annually, but only a few become truly successful. What factors contribute to a movie's success? Is it the genre, the budget, the actors, or something else? In this project, we set out to explore the elements that influence a movie’s success by analyzing datasets of films and looking at trends in ratings, profits, and casting.
 
-# Hypotheses and Research Questions
+We are interested in this topic because movies are not only a major form of entertainment but also a massive industry. Understanding what leads to success can offer insights into both audience preferences and the strategies that shape film making today.
 
-1.  How do audience ratings compare across the five most common movie genres?
+To guide our analysis, we focused on three key research questions:
 
-2.  Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
+1. How do audience ratings compare across the five most common movie genres?
 
-3.  Who are the most frequently featured stars among in the movie dataset?
+2. Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
+
+3.  Which stars appear most frequently in successful movies, and does their presence correlate with higher success?
+
+Through these questions, we aim to uncover patterns and insights that explain what contributes to a movie’s success. By comparing audience ratings across genres, we hope to identify which types of films tend to get the most viewers. Investigating studio performance and budget-profit relationships allows us to understand how financial decisions impact profitability. Finally, analyzing the presence of frequently featured stars helps us explore whether certain actors consistently appear in higher-performing films, potentially revealing a link between star presence and success. Overall, our goal is to better understand the creative and financial factors that shape successful movies.
 
 # Data Provenance
 
@@ -120,7 +124,7 @@ Genre_summary <- MoviesJoined%>%
 
 ```{r}
 #| label: tbl-GenreRating
-#| tbl-cap: "Summary Table of Ratings by the Top 5 Movie Genres"
+#| tbl-cap: "Summary Table of Ratings for the Top 5 Movie Genres"
 #| html-table-processing: none
 #| caption-justification: center
 #| tbl-pos: "H"
