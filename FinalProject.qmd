@@ -104,7 +104,7 @@ Genre_summary <- MoviesJoined%>%
 
 ```{r}
 #| label: tbl-GenreRating
-#| tbl-cap: "Rating Summary by Top 5 Movie Genres"
+#| tbl-cap: "Summary Table of Ratings by the Top 5 Movie Genres"
 #| html-table-processing: none
 #| caption-justification: center
 #| tbl-pos: "H"
@@ -113,13 +113,14 @@ Genre_summary <- MoviesJoined%>%
 Genre_summary%>%
   kable(
     booktabs = TRUE,                    
-    align = c("l", rep("c",8)) # Left-aligns the first column, centers the rest
+    align = c("l", rep("c",8)), # Left-aligns the first column, centers the rest
+    format = "latex"
   )%>%
   kableExtra::kable_styling(
-    bootstrap_options = c("striped","hover"),
-    font_size = 14          # Sets font size of the table
+    font_size = 16,          # Sets font size of the table
+    latex_options = c("striped","scale_down"),
   )%>%
-  row_spec(0, bold = TRUE, background = "#AC8DCE")%>%  # Styles the header
+  row_spec(0, bold = TRUE, background = "pink")%>%  # Styles the header
   column_spec(1, italic = TRUE) # Styles the 1 column
 
 ```
@@ -182,7 +183,9 @@ theme(
 
 # Sources and References
 
-{{< pagebreak >}} \# Code Appendix
+{{< pagebreak >}} 
+
+# Code Appendix
 
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 ```
