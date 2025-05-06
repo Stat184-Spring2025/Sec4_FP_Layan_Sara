@@ -52,9 +52,9 @@ We are interested in this topic because movies are not only a major form of ente
 
 To guide our analysis, we focused on three key research questions:
 
-1. How do audience ratings compare across the five most common movie genres?
+1.  How do audience ratings compare across the five most common movie genres?
 
-2. Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
+2.  Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
 
 3.  Which stars appear most frequently in successful movies, and does their presence correlate with higher success?
 
@@ -92,17 +92,17 @@ FAIR SARA CARE LAYAN
 
 # EDA: Exploratory Data Analysis
 
-In our project, we used Exploratory Data Analysis to understand the structure of our datasets and uncover any errors or patterns before diving into deeper analysis. We began by cleaning and wrangling the data to ensure it was accurate and usable. This included identifying and removing rows with missing values (NAs), as well as fixing inconsistencies.
+In our project, we implemented **Exploratory Data Analysis** to understand the structure of our datasets and uncover any errors or patterns before diving into deeper analysis. We began by cleaning and **wrangling** the data to ensure it was accurate and usable. This included identifying and removing rows with missing values (*NAs*), as well as fixing inconsistencies.
 
-After cleaning the data, we created frequency and summary tables to examine key statistics such as the mean, median, and standard deviation, giving us a clearer picture of the overall distribution of variables like ratings. We then used visualizations to uncover patterns and relationships that weren’t immediately apparent from the summary statistics alone.
+After cleaning the data, we created **frequency** and **summary tables** to examine key statistics such as the mean, median, and standard deviation, giving us a clearer picture of the overall distribution of variables like ratings. We then used **visualizations** to uncover patterns and relationships that weren’t immediately apparent from the summary statistics alone.
 
-Through EDA, we were able to detect  irregularities in our dataset, gain a better understanding of its overall structure, and identify key trends that guided our analysis. This process provided a strong foundation for answering our research questions and exploring the factors that contribute to a movie’s success.
+Through EDA, we were able to detect irregularities in our dataset, gain a better understanding of its overall structure, and identify key trends that guided our analysis. This process provided a strong foundation for answering our research questions and exploring the factors that contribute to a movie’s success.
 
 ## Genre and Rating
 
 LAYAN
 
-### Summary
+### Summary Table
 
 ```{r}
 #| label: MakeSummaryTable
@@ -218,7 +218,6 @@ LAYAN
 LAYAN
 
 {{< pagebreak >}}
-
 
 # Code Appendix
 
