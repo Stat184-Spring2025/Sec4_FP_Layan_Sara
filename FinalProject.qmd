@@ -11,7 +11,6 @@ format:
   pdf:
     toc: false
     number-depth: 5
-    number-sections: true
     cap-location: top
     fig-align: center
     geometry: 
@@ -47,6 +46,8 @@ psuPalette <- c("#1E407C", "#BC204B", "#3EA39E", "#E98300",
 
 # Introduction
 
+LAYAN
+
 # Hypotheses and Research Questions
 
 1.  How do audience ratings compare across the five most common movie genres?
@@ -57,11 +58,20 @@ psuPalette <- c("#1E407C", "#BC204B", "#3EA39E", "#E98300",
 
 # Data Provenance
 
+SARA
+
 ## Main Dataset
+
+SARA
 
 ## Secondary Dataset
 
+SARA
+
 ## Merged and Final Dataset
+
+SARA
+
 ```{r}
 #| label: LoadingReadingURL
 
@@ -74,9 +84,15 @@ MoviesJoined <- read.csv(url, header = TRUE)
 
 # FAIR and CARE Principles
 
+FAIR SARA CARE LAYAN
+
 # EDA: Exploratory Data Analysis
 
+LAYAN
+
 ## Genre and Rating
+
+LAYAN
 
 ### Summary
 
@@ -178,11 +194,23 @@ theme(
 
 ```
 
+## Companies and Movies
+
+SARA
+
+# Q 3
+
 # Conclusion
+
+LAYAN
 
 # Sources and References
 
-{{< pagebreak >}} \# Code Appendix
+LAYAN
+
+{{< pagebreak >}}
+
+# Code Appendix
 
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 ```
