@@ -267,7 +267,7 @@ Overall, the data suggests that Drama is both the most consistently high-perform
 ```{r}
 #| label: WrangleGRBoxPlot
 
-# Wrangling Data ----
+# Wrangling Box Plot Data ----
 ## Get Top 5 Genres 
 TopGenres <- MoviesJoined %>%
   count(Genre, sort = TRUE) %>%  # Counts num of movies per genre and sorts them
@@ -296,10 +296,10 @@ ggplot(
     y = Genre    # Set the y-axis to represent Genre
   )
 ) +     
-geom_boxplot(fill = "lightpink") +   # Creates box plot with pink boxes
-labs(                #labels the x and y axis
-  y = "Top Genres",
-  x = "Rating"
+geom_boxplot(fill = "lightpink") +    # Creates box plot with pink boxes
+labs(                 
+  y = "Top Genres",   #labels the x axis
+  x = "Rating"      #labels the y axis
 ) +
 theme_minimal()+
 theme(
@@ -311,7 +311,7 @@ theme(
   axis.title.y = element_text(face = "bold", 
                               size = 14, 
                               margin = margin(r = 15) 
-                              ) # margin pushes titles away from axis
+                              )   # margin pushes titles away from axis
 )
 
 ```
@@ -426,8 +426,46 @@ CompanyBudget %>%
 SARA
 
 ### Summary Table
+```{r}
+#| label: WranglingStarSmry
 
-LAYAN
+# Wrangling Star Summary Table Data ----
+star_summary <- MoviesJoined %>%
+  group_by(Star) %>%  # Group data by each unique star
+  summarise(
+    Movie_Count = n(),    # Count number of movies each star appeared in
+    Avg_Rating = mean(Rating, na.rm = TRUE), # Calculate the average rating
+    SD_Rating = sd(Rating, na.rm = TRUE), # Standard deviation of ratings
+    Avg_Profit = mean(Profit, na.rm = TRUE) # Average profit per movie
+  ) %>%
+  arrange(desc(Movie_Count))%>%      # Sort stars by number of movies
+  slice_head(n=5)%>%    # Keeps only the top 5 most frequent stars
+  mutate(across(where(is.numeric), round, 2)) # Rounds to 2 decimal places
+
+```
+
+```{r}
+#| label: tbl-Star
+#| tbl-cap: "Summary Statistics for Top Stars"
+#| html-table-processing: none
+#| caption-justification: center
+#| tbl-pos: "H"
+
+# Displaying the Summary Table ----
+star_summary %>%
+  kable(booktabs = TRUE,
+        col.names = c("Star", "Movie Count", "Avg. Rating",
+                      "Rating SD", "Avg. Profit"), # Names columns
+        align = c("l", rep("c", 4)), # Align first column left, others center
+        format = "latex" # Output the table in LaTeX format (for PDF rendering)
+  )%>%
+  kableExtra::kable_styling(
+    font_size = 16,            # Sets font size of the table
+    latex_options = c("striped","scale_down") # Apply striped rows
+  )%>%
+  row_spec(0, bold = TRUE)  # Bold the header row
+
+```
 
 ### Bar Chart
 
@@ -435,8 +473,65 @@ SARA
 
 ### Scatter Plot
 
-LAYAN
+```{r}
+#| label: WStarScatter
 
+# Wrangling ScatterPlot of the Rating for Top Stars ----
+
+# Identify Top 5 Stars by number of movies
+top5_stars <- MoviesJoined %>%
+  count(Star, sort = TRUE) %>%  # Count how many times each star appears
+  slice_head(n = 5) %>%  # Keep the top 5 most frequent stars
+  pull(Star)  
+
+# Filter movies for those stars
+top_star_movies <- MoviesJoined %>%
+  filter(Star %in% top5_stars)
+
+```
+
+```{r}
+#| label: fig-StarRatingScatter
+#| fig-cap: "Movie Ratings of Top 5 Most Frequent Stars"
+#| fig-alt: "Scatter Plot showing the "
+#| fig-pos: "H"
+#| fig-height: 7
+#| fig-width: 10
+
+
+# Plot the Scatterplot of Stars/Rating ----
+
+ggplot(
+  data = top_star_movies, # Use the filtered dataset
+  mapping = aes(x = Star,    # X-axis shows the star's name
+                y = Rating,   # Y-axis shows the movie rating
+                color = Star   # Color points by star for distinction
+                )
+  ) +
+  geom_jitter(width = 0.2, size = 3) +
+  scale_color_manual(values = psuPalette) +  # Apply custom colors 
+  labs(
+    x = "Star",   # X-axis label
+    y = "Movie Rating",  # Y-axis label
+    color = "Top Stars Name"
+  ) +
+  theme_minimal() +     # Uses a clean, minimal theme
+  theme(
+    legend.position = "right",  # Place the legend on the right
+    legend.title = element_text(size = 14, face ="bold"),  # Set legend text size and bolds
+    legend.text = element_text(size = 13),
+    axis.title.x = element_text(face = "bold",   # Make the x-axis title bold
+                                size = 15,    # Set font size to 14
+                                margin = margin(t = 15)
+                                ),
+    axis.title.y = element_text(face = "bold", # Customize y-axis title
+                                size = 15, 
+                                margin = margin(r = 15)
+                                ),
+    axis.text = element_text(size = 12, face = "bold")
+  ) # margin pushes title away from axis
+ 
+```
 
 # Conclusion
 

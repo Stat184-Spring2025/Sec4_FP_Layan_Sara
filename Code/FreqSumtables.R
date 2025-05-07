@@ -130,16 +130,24 @@ star_summary <- MoviesJoined %>%
   group_by(Star) %>%
   summarise(
     Movie_Count = n(),
-    Avg_Rating = round(mean(Rating, na.rm = TRUE), 2),
-    SD_Rating = round(sd(Rating, na.rm = TRUE), 2),
-    Avg_Profit = round(mean(Revenue - Budget, na.rm = TRUE), 0)
+    Avg_Rating = mean(Rating, na.rm = TRUE),
+    SD_Rating = sd(Rating, na.rm = TRUE),
+    Avg_Profit = mean(Profit, na.rm = TRUE)
   ) %>%
   arrange(desc(Movie_Count))%>%
-  slice_head(n=5)
+  slice_head(n=5)%>%
+  mutate(across(where(is.numeric), round, 2))
 
 # Display the table
 star_summary %>%
   kable(caption = "Summary Statistics for Top Stars",
+        booktabs = TRUE,
         col.names = c("Star", "Movie Count", "Avg. Rating", "Rating SD", "Avg. Profit"),
-        align = 'lrrrr') %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
+        align = c("l", rep("c", 4))
+  )%>%
+  kableExtra::kable_styling(
+    font_size = 16,          # Sets font size of the table
+    bootstrap_options = c("striped","hover")
+  )%>%
+  row_spec(0, bold = TRUE)  # Styles the header
+        
