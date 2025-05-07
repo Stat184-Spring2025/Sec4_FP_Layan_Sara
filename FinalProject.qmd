@@ -60,7 +60,6 @@ To guide our analysis, we focused on three key research questions:
 
 Through these questions, we aim to uncover patterns and insights that explain what contributes to a movie’s success. By comparing audience ratings across genres, we hope to identify which types of films tend to get the most viewers. Investigating studio performance and budget-profit relationships allows us to understand how financial decisions impact profitability. Finally, analyzing the presence of frequently featured stars helps us explore whether certain actors consistently appear in higher-performing films, potentially revealing a link between star presence and success. Overall, our goal is to better understand the creative and financial factors that shape successful movies.
 
-
 # Data Provenance
 
 To explore the factors contributing to movie success, we used two well-sourced datasets that each provided different but complementary information from major online movie databases. We cleaned and combined these datasets through a detailed wrangling and merging process to create a final dataset. This merged version gave us the foundation needed to conduct a thorough Exploratory Data Analysis (EDA) and effectively address our research questions.
@@ -69,18 +68,17 @@ Before settling on these data sources, we evaluated multiple datasets. An earlie
 
 ## Main Dataset
 
-Our main dataset was sourced from a **Github** repository created by the authors Tran Hieu Le, Totyana Hill, Fahim Ishrak and Zhilin Wang. It was originally scraped from TMDb (The Movie Database) this dataset contains information on approximately 5,000 movies released between the 1930s and 2016. Each _case_ in the dataset represents a single movie, and includes essential attributes related to its financial performance and basic descriptors. The key _attributes_ include production budget, worldwide revenue, title, production company, runtime, and genre. The _purpose_ of collecting this data was to offer a structured overview of film financials, enabling analysis of profitability and return on investment.
+Our main dataset was sourced from a **Github** repository created by the authors Tran Hieu Le, Totyana Hill, Fahim Ishrak and Zhilin Wang. It was originally scraped from TMDb (The Movie Database) this dataset contains information on approximately 5,000 movies released between the 1930s and 2016. Each *case* in the dataset represents a single movie, and includes essential attributes related to its financial performance and basic descriptors. The key *attributes* include production budget, worldwide revenue, title, production company, runtime, and genre. The *purpose* of collecting this data was to offer a structured overview of film financials, enabling analysis of profitability and return on investment.
 
 ## Secondary Dataset
 
-Our secondary dataset was obtained from **Kaggle** and published by Daniel Grijalva. It was originally scraped from IMDb and contains metadata on approximately 7,600 movies spanning from 1980 to 2020. Each _case_ corresponds to an individual movie and captures its descriptive, creative, and audience-related _attributes_. These include age rating, director, writer, lead actor (star), release year, rating count, and rating score. The _purpose_ of this dataset was to supplement our main data by providing richer descriptive and audience-related information, which helped us better address our research questions.
+Our secondary dataset was obtained from **Kaggle** and published by Daniel Grijalva. It was originally scraped from IMDb and contains metadata on approximately 7,600 movies spanning from 1980 to 2020. Each *case* corresponds to an individual movie and captures its descriptive, creative, and audience-related *attributes*. These include age rating, director, writer, lead actor (star), release year, rating count, and rating score. The *purpose* of this dataset was to supplement our main data by providing richer descriptive and audience-related information, which helped us better address our research questions.
 
 ## Merged and Final Dataset
 
-To answer our research questions, we combined our two datasets into a single, cleaned, and well-structured table. The datasets were merged based on matching _movie titles_ and _production companies_ to ensure accuracy and consistency. To maintain data quality, we excluded records with missing or invalid values and treated zero values in financial fields as missing. We also created a new variable, _Profit_, by subtracting budget from revenue to better assess the financial success in our analysis.
+To answer our research questions, we combined our two datasets into a single, cleaned, and well-structured table. The datasets were merged based on matching *movie titles* and *production companies* to ensure accuracy and consistency. To maintain data quality, we excluded records with missing or invalid values and treated zero values in financial fields as missing. We also created a new variable, *Profit*, by subtracting budget from revenue to better assess the financial success in our analysis.
 
 The final dataset includes movies released from 1980 to 2019, which aligns with the expected coverage based on the original time spans of the two source datasets. It contains 15 key attributes across essential categories: content (title, genre, runtime, rating), financials (budget, revenue, profit), production details (studio, director, star), and audience reception (rating score and count). This comprehensive dataset provided a strong foundation to explore our research questions related to genre-based ratings, profit of companies, and the influence of star actors on a film’s success.
-
 
 ```{r}
 #| label: TidyMergeData
@@ -162,8 +160,6 @@ MoviesJoined <- MoviesMainTidy%>%
 
 ```
 
-
-
 ```{r}
 #| label: LoadingReadingURL
 
@@ -177,7 +173,17 @@ MoviesJoined <- read.csv(url, header = TRUE)
 
 # FAIR and CARE Principles
 
-FAIR SARA CARE LAYAN
+The **FAIR** principles are essential for promoting high standards in data sharing, transparency, and longterm usability which our datasets do align to these guidelines. **Findable**: Our primary dataset was sourced from Kaggle and the secondary from GitHub, both of which are widely recognized platforms that provide basic metadata and descriptive tagging, making the data easy to locate. 
+**Accessible**: Both datasets are publicly available and can be retrieved without login or payment barriers through standard web protocols. However, because the long-term availability of external repositories is not guaranteed, we also uploaded both original datasets as well as our cleaned and merged version to our own GitHub repository to ensure continued access and reproducibility. 
+**Interoperable**: The datasets are provided in CSV format, a widely accepted and accessible format that enables easy integration into R and other data analysis tools, which insures smooth integration and analysis across various platforms. 
+**Reusable**: The data includes meaningful attributes that provide context for interpretation. Through our cleaning and documentation process, we enhanced its structure, added derived variables like Profit, and clearly described the data’s provenance, making it suitable for future research.
+
+The **CARE** principles, focus on the ethical use of data for all people, especially for Indigenous or marginalized communities. While our datasets do not directly involve sensitive or community specific data, it’s still important to reflect on these principles to ensure our work is thoughtful, fair, and respectful.
+**Collective Benefit**: Our project aims to uncover trends in the film industry that can help others better understand what drives movie success, whether creatively or financially. We hope our analysis supports open learning and sparks interest in data-driven storytelling.
+**Authority to Control**: The datasets we used weren’t officially released by the platforms that host the data (IMDb, TMDb). That being said, they do algin with their terms and conditions of public usage.
+**Responsibility**: We made sure to treat the data with care. Since the dataset is non-sensitive and publicly accessible, we mainly focused on cleaning, organizing, and documenting it properly so our analysis would be accurate, transparent, and respectful.
+**Ethics**: We focused on minimizing harm by ensuring that our dataset did not include private or sensitive information and we avoided making claims that could misrepresent people or groups. We used the data strictly for educational purposes, and we made sure our work promoted fairness.
+
 
 # EDA: Exploratory Data Analysis
 
@@ -240,12 +246,11 @@ Genre_summary%>%
 
 ```
 
-@tbl-GenreRating presents an overview of the ratings for the top five movie genres: Comedy, Drama, Action, Adventure, and Horror. Among these, **Drama** clearly stands out as the highest-rated genre, with a **mean rating** of __6.91__, a **median** of __7.0__, and a **maximum rating** of __9.3__. It also shows the most consistent performance, having the **lowest standard deviation** among all genres. In contrast, **Horror** ranks the lowest, with an **average rating** of __5.97__ and the **widest spread** in ratings, indicating more variability in audience reception. The other genres fall in between, though **Adventure** shows a high level of variability similar to Horror.
+@tbl-GenreRating presents an overview of the ratings for the top five movie genres: Comedy, Drama, Action, Adventure, and Horror. Among these, **Drama** clearly stands out as the highest-rated genre, with a **mean rating** of **6.91**, a **median** of **7.0**, and a **maximum rating** of **9.3**. It also shows the most consistent performance, having the **lowest standard deviation** among all genres. In contrast, **Horror** ranks the lowest, with an **average rating** of **5.97** and the **widest spread** in ratings, indicating more variability in audience reception. The other genres fall in between, though **Adventure** shows a high level of variability similar to Horror.
 
-When looking at film counts, **Comedy** and **Drama** are the most represented, each with over __200 films__, while **Horror** has the lowest count with just __77 films__, which may contribute to its greater rating variability.
+When looking at film counts, **Comedy** and **Drama** are the most represented, each with over **200 films**, while **Horror** has the lowest count with just **77 films**, which may contribute to its greater rating variability.
 
 Overall, the data suggests that Drama is both the most consistently high-performing genre and the best-rated on average, whereas Horror tends to be more unpredictable and generally receives lower ratings.
-
 
 ### Box Plot
 
