@@ -50,7 +50,7 @@ Movies are a huge part of our lives and a multi-billion-dollar industry that sha
 
 We are interested in this topic because movies are not only a major form of entertainment but also a massive industry. Understanding what leads to success can offer insights into both audience preferences and the strategies that shape film making today.
 
-To guide our analysis, we focused on three key research questions:
+To guide our analysis, we focused on **three key research questions**:
 
 1.  How do audience ratings compare across the five most common movie genres?
 
@@ -201,7 +201,7 @@ After cleaning the data, we created **frequency** and **summary tables** to exam
 
 Through EDA, we were able to detect irregularities in our dataset, gain a better understanding of its overall structure, and identify key trends that guided our analysis. This process provided a strong foundation for answering our research questions and exploring the factors that contribute to a movie’s success.
 
-## Genre and Rating
+## Rating Distributions in the Five Most Common Genres
 
 In this section, we will explore how audience ratings vary across the five most common movie genres. We begin by examining the summary statistics to better understand the distribution of ratings within each genre.
 
@@ -316,6 +316,11 @@ theme(
 
 ```
 
+The box plot in @fig-GenreRatingBox shows the distribution of movie ratings across the top five genres and helps bring the numbers in @tbl-GenreRating to life through a visual format. One thing that really stands out is how **Drama**’s entire box is shifted higher than the others, meaning that not only is its average rating high, but most of its movies consistently land in that higher range. It also has a **tighter interquartile range**, meaning the ratings are tightly clustered, further reinforcing that Drama is the most consistent genre overall. In contrast, **Horror** displays a much wider spread, this suggests more variability in audience reception. 
+
+**Comedy** shows several low-rated _outliers_ in the box plot, indicating that while many comedy films fall around the average, a few are rated significantly lower. According to the Summary @tbl-GenreRating, Comedy has a **minimum rating** of **2.1**, and the box plot confirms this value is a outlier with a point far below the lower whisker.
+
+This highlights how a few poorly received films can drag down the overall average, even if most of the genre performs reasonably well. It’s a reminder that summary statistics alone don’t always tell the full story, without a visual, we wouldn’t easily notice how rare or extreme those low ratings are. The visual helps us see that while these outliers exist, they are not representative of the genre as a whole.
 
 ## Company Profitability and Financial Patterns
 
@@ -544,7 +549,7 @@ Together, @tbl-Star and @fig-StarProfitBar provide a clearer understanding of th
 ```{r}
 #| label: fig-StarRatingScatter
 #| fig-cap: "Movie Ratings of Top 5 Most Frequent Stars"
-#| fig-alt: "Scatter Plot showing the "
+#| fig-alt: "Scatter Plot showing the Ratings for movies of the top stars"
 #| fig-pos: "H"
 #| fig-height: 7
 #| fig-width: 10
