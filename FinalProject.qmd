@@ -324,112 +324,200 @@ This highlights how a few poorly received films can drag down the overall averag
 
 ## Company Profitability and Financial Patterns
 
-In this section, we will examine which top production studios generate the highest profits and whether there is a noticeable relationship between how much a company spends (**budget**) and how much it earns (**profit**). We began by identifying the **15 most active production companies** in our dataset, which we defined as those with the highest number of films. Focusing on these studios allowed us to base our comparisons on a solid number of films, making the patterns we observed more reliable.
+In this section, we will explore which production studios have the best return on investment (ROI), by analyzing both the **budget** and the **profit** of the most active companies in our data, over time. We first identified the *top five production companies* based on the *number of films* they released. Focusing on these studios allowed us to base our comparisons on a solid number of films, making the patterns we observed more reliable.
+
 
 ```{r}
-#| label: TopCompanies
+#| label: WrangleTopCompanies
 
 # Creating visualizations for 2nd Question ----
+# Get top 5 and 15 companies by number of movies
+TopCompanies5 <- MoviesJoined %>%
+  count(Company, sort = TRUE) %>%
+  slice_max(n, n = 5) %>%
+  pull(Company)
 
-# Get top 15 companies by number of movies
-TopCompanies <- MoviesJoined %>%
+TopCompanies15 <- MoviesJoined %>%
   count(Company, sort = TRUE) %>%
   slice_max(n, n = 15) %>%
   pull(Company)
 
 ```
 
-### Profit Bar Chart
-
-EDIT
+### Profit Line Graph
 
 We began by calculating the average profit for each of the top 15 companies. To visualize this, we created a horizontal bar chart (@fig-CompanyProfit) that shows each company's name on the y-axis and its corresponding profit earnings in USD on the x-axis. The bars are sorted from lowest to highest average profit, allowing for a quick comparison of financial performance.
 
 ```{r}
 #| label: fig-CompanyProfit
-#| fig-cap: "Profit of the 15 Most Active Production Companies"
-#| fig-alt: "Bar Chart showing the profit in USD of the top 15 companies"
+#| fig-cap: "Cumulative Profit Over Time for Top 5 Production Companies"
+#| fig-alt: "Line Graph showing the cumulative profit of the top 5 companies"
 #| fig-pos: "H"
 #| fig-height: 5
 #| fig-width: 7
 
-#Create the Profit Bar Chart -----
-#Get the average Profit for the Companies
-CompanyProfit <- MoviesJoined %>%
+#Create the Profit Line Graph -----
+MoviesJoined %>%
+  filter(Company %in% TopCompanies5) %>%
+  #Calculate yearly total budget per company
+  group_by(Company, Year) %>%
+  summarize(YearlyProfit = sum(Profit, na.rm = TRUE), .groups = "drop") %>%
+  #Sort data so cumulative sum works correctly
+  arrange(Company, Year) %>%
   group_by(Company) %>%
-  summarize(AverageProfit = mean(Profit, na.rm = TRUE)) %>%
-  ungroup()
-
-CompanyProfit %>%
-  filter(Company %in% TopCompanies) %>%
-  ggplot(aes(x = reorder(Company, AverageProfit), #Sort the bars by profit
-             y = AverageProfit)) +
-  geom_col(fill = "#AC8DCE") +
-  coord_flip() + #Make it horizontal 
-  #Label axes
+  #Get cumulative sum so that line graph is smooth
+  mutate(CumulativeProfit = cumsum(as.numeric(YearlyProfit))) %>%
+  #Create the line chart
+  ggplot(aes(x = Year, 
+             y = CumulativeProfit, 
+             color = Company, 
+             linetype = Company)) +
+  #Draw the lines with thicker width
+  geom_line(size = 1.2) +
+  #Add labels and formatting
+  scale_color_manual(values = psuPalette) +  # Apply custom colors
   labs(
-    x = "Production Company",
-    y = "Profit (USD)"
+    x = "Year",
+    y = "Cumulative Profit (USD)",
+    color = "Company",
+    linetype = "Company"
   ) +
   theme_minimal() +
   theme(
-    axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 10, face = "bold")
+    legend.title = element_text(face = "bold"),
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 10)
   )
 
 
 ```
+```{r}
+#Calculate Max Profit
+CumulativeProfitData <- MoviesJoined %>%
+  filter(Company %in% TopCompanies5) %>%
+  group_by(Company, Year) %>%
+  summarize(YearlyProfit = sum(Profit, na.rm = TRUE), .groups = "drop") %>%
+  arrange(Company, Year) %>%
+  group_by(Company) %>%
+  mutate(CumulativeProfit = cumsum(YearlyProfit))
+#Calculate Max Budget
+CumulativeBudgetData <- MoviesJoined %>%
+  filter(Company %in% TopCompanies5) %>%
+  group_by(Company, Year) %>%
+  summarize(YearlyBudget = sum(Budget, na.rm = TRUE), .groups = "drop") %>%
+  arrange(Company, Year) %>%
+  group_by(Company) %>%
+  mutate(CumulativeBudget = cumsum(as.numeric(YearlyBudget)))
+```
 
-@fig-CompanyProfit shows a clear range of performance across companies. **DreamWorks Animation** leads, by a significant amount, with the highest profit among all production companies analyzed. This suggests that DreamWorks not only produces successful films but also does so consistently across its portfolio. Following DreamWorks are *Walt Disney Pictures* and *Warner Bros*. also show strong profits, indicating that these companies don’t only have a strong industry presence but also a track record of producing very profitable movies. On the other hand, other active studios like Lionsgate and Columbia Pictures displayed more moderate profits, suggesting variability in the financial outcomes of their film portfolios. At the lower end of the chart, companies like *MGM* and *Fox Searchlight Pictures* have noticeably lower profits, suggesting either higher production costs or lower returns. The *gap* between top and bottom studios is significant, indicating that not all active companies achieve the same financial outcomes.
+Overall, @fig-CompanyProfit shows that all *five* studios experienced growth in profit over time, though at different rates. Notably, **Universal Pictures** and **Paramount Pictures** lead in cumulative profit, especially after 2000, where their lines show a sharp upward trend. Universal, in particular, reaches the highest total profit by the end of the time range with, `r floor(max(CumulativeProfitData$CumulativeProfit, na.rm = TRUE) / 1000000000)` billion dollars in cumulative profit over the years.
+**Columbia Pictures** also shows significant late-stage growth, eventually surpassing **Walt Disney Pictures**, whose curve begins to flatten around 2015. This may suggest a decrease in the number of Disney films represented in our dataset during those years, rather than a decline in actual profitability. Meanwhile, **New Line Cinema** trails behind in cumulative earnings, indicating a more modest commercial impact overall.
 
-To sum up, this visualization helps highlight which studios are most effective in turning their investments into financial success and provides a high-level view of profitability trends across the industry.
+It’s important to note that while these trends offer valuable insight, our dataset may not fully represent every studio’s complete catalog. For example, Columbia Pictures probability stops after 2015, not because they stopped releasing but because our data doesn’t include their movies after that year.
+That being said, this visualization still provides us with an idea of how studio profits have evolved and highlights which companies have consistently *delivered financial success over time*.
 
-### Budget Bar Chart
 
-We then looked at the production budget for films produced by the same top 15 active companies to determine whether higher investment levels are associated with higher profits. The results are shown in @fig-CompanyBudget, a horizontal bar chart similar in structure to the profit chart, where each bar represents a company and their corresponding average budget in USD on the x-axis. Then, again, the bars are sorted from lowest to highest average budget. We can see in @fig-CompanyBudget, the results highlight some interesting differences.
+### Budget Line Graph
+
+Next, we created a similar line graph but changed the cumulative profit to cumulative budget to compare total spending by each company over the same period of time (@fig-CompanyBudget). Like the profit graph, it shows cumulative amounts over time, helping us see which companies invest the most in production.
 
 
 ```{r}
 #| label: fig-CompanyBudget
-#| fig-cap: "Profit of the 15 Most Active Production Companies"
-#| fig-alt: "Bar Chart showing the profit in USD of the top 15 companies"
+#| fig-cap: "Cumulative Budget Over Time for Top 5 Production Companies"
+#| fig-alt: "Line Graph showing the cumulative budget of the top 5 companies"
 #| fig-pos: "H"
 #| fig-height: 5
 #| fig-width: 7
 
-#Create the Budget Bar Chart -----
-#Calculate Average Budget per Company
-CompanyBudget <- MoviesJoined %>%
+#Create the Budget Line Graph -----
+MoviesJoined %>%
+  filter(Company %in% TopCompanies5) %>%
+  #Calculate yearly total budget per company
+  group_by(Company, Year) %>%
+  summarize(YearlyBudget = sum(Budget, na.rm = TRUE), .groups = "drop") %>%
+  #Sort data so cumulative sum works correctly
+  arrange(Company, Year) %>%
   group_by(Company) %>%
-  summarize(AverageBudget = mean(Budget, na.rm = TRUE)) %>%
-  ungroup()
-#Filter to top companies and plot
-CompanyBudget %>%
-  filter(Company %in% TopCompanies) %>%
-  ggplot(aes(x = reorder(Company, AverageBudget), y = AverageBudget)) +
-  geom_col(fill = "#1E407C") +
-  coord_flip() +
+  #Get cumulative sum so that line graph is smooth
+  mutate(CumulativeBudget = cumsum(as.numeric(YearlyBudget))) %>%
+  #Create the line chart
+  ggplot(aes(x = Year, 
+             y = CumulativeBudget, 
+             color = Company, 
+             linetype = Company)) +
+  #Draw the lines with thicker width
+  geom_line(size = 1.2) +
+  #Add labels and formatting
+  scale_color_manual(values = psuPalette) +  # Apply custom colors
   labs(
-    title = "Budget of the 15 Most Active Production Companies",
-    x = "Production Company",
-    y = "Budget (USD)"
+    x = "Year",
+    y = "Cumulative Budget (USD)",
+    color = "Company",
+    linetype = "Company"
   ) +
   theme_minimal() +
   theme(
-    axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 10, face = "bold")
+    legend.title = element_text(face = "bold"),
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 10)
   )
 
 ```
 
 
+In @fig-CompanyBudget, we observe that just like in the  profit line graph, **Paramount Pictures** and **Universal Pictures** had the highest cumulative budgets, reflecting on their large scale investments across their film portfolios. Where Paramount reached its highest commulative budget of about `r floor(max(CumulativeBudgetData$CumulativeBudget, na.rm = TRUE) / 1000000000)` billion dollars. Walt Disney Pictures and New Line Cinema, on the other hand, show more moderate cumulative spending, with noticeably slower growth in budget accumulation throughout the observed period, just like their profit.
 
-### Budget vs. Profit Scatter Plot
+An especially interesting case is **Columbia Pictures**. Despite having one of the highest cumulative budgets, its total profit in @fig-CompanyProfit is only middle-ranking compared to the other top studios. This implies that Columbia’s return on investment is relatively lower, spending more over time but not yielding profits at the same scale as studios like Universal or Paramount Pictures. In contrast, Universal appears more efficient, achieving strong cumulative profits with about the same slightly overall budget. This comparison highlights an important insight: *greater spending* does not always lead to proportionally *higher returns*.
 
+### Budget-Profit Relationship
+
+Now, to examine the direct relationship between investment and return, we plotted each company’s total budget against total profit in a scatter plot (@fig-BudgetProfitPlot). Each point represents one of the top five companies, as seen from the legend on the right, and a black regression line shows the trend. The x-axis is the total budget in USD and the y-axis is the total profit also in USD.
+
+```{r}
+#| label: fig-BudgetProfitPlot
+#| fig-cap: "Relationship Between Budget and Profit of the Top 15 Companies"
+#| fig-alt: "Scatter Plot of the total budget vs the total profit"
+#| fig-pos: "H"
+#| fig-height: 5
+#| fig-width: 7
+
+
+CompanySummary <- MoviesJoined %>%
+  filter(Company %in% TopCompanies5) %>%
+  group_by(Company)%>%
+  summarize(TotalProfit = sum(Profit, na.rm = TRUE), 
+            TotalBudget = sum(Budget, na.rm = TRUE))
+
+CompanySummary %>%
+  ggplot(aes(x = TotalBudget, 
+             y = TotalProfit,
+             color = Company)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", size = 1.2) +
+  scale_color_manual(values = psuPalette) + #Same pallete as the lines
+  labs(
+    x = "Budget (USD)",
+    y = "Profit (USD)",
+    color = "Company"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 10)
+  )
+
+```
+
+As expected from our line graphs, @fig-BudgetProfitPlot reveals a positive linear relationship: studios that spend more generally earn more. However, the position of each studio relative to the trend line provides valuable insights. For example, **Universal Pictures** sits above the line, suggesting it outperforms expectations based on its spending. In contrast, **Columbia Pictures**, while having a high budget, falls below the line—indicating a lower return relative to its total investment, which we also noticed from @fig-CompanyProfit and @fig-CompanyBudget.
+
+#### Interpretation
+
+Together, these three visuals (@fig-BudgetProfitPlot, @fig-CompanyProfit and @fig-CompanyBudget) provide a comprehensive view of company performances over time. The line graphs illustrate which studios consistently grew their profit and spending, while the scatter plot highlights differences in return of investments efficiency. **Universal and Paramount Pictures** emerge as *top performers* in both absolute profitability and investment effectiveness. Meanwhile, Columbia, despite high spending, show slightly lower relative returns, and New Line Cinema operates with lower budgets and profits overall.
+This analysis highlights that although large budgets can contribute to high profits, a studio’s return on investment is ultimately determined by how effectively those funds are used, through efficient operations and smart production decisions.
 
 
 ## Star Impact on Movie Success
-
 
 To explore our third research question, examining which actors appear most frequently in movies and whether their presence contributes to a film’s success. We defined success of movies in two distinct ways to deepen our analysis. The first definition focuses on **financial success** (@fig-ProfitSuccessBar), measured by a profit exceeding $50 million. The second centers on **critical success** (@fig-StarRatingScatter), evaluated through audience ratings. By analyzing how often the top five most frequent stars appear in successful films under each definition, we were able to identify consistent patterns and better understand the impact of star power on movie performance.
 
