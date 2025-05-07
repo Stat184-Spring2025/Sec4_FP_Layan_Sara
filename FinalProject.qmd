@@ -482,7 +482,7 @@ star_summary %>%
 @tbl-Star shows that **Nicolas Cage** appears in the most films, with a total of **13**, but also has the _highest variability_ in ratings, with a _standard deviation_ of **1.24**, suggesting mixed audience responses. In contrast, **Dwayne Johnson** is the most consistent performer, with a _low standard deviation_ of **0.38**, though his _average rating_ is relatively normal at **5.99**. **Tom Hanks** stands out with the **highest average rating** of **7.33**, indicating that his films are well-received by viewers, along with a _high average profit_. **Tom Cruise** offers the strongest balance, combining a _high average rating_ of **6.97** with the _highest average profit_ in the group.
 
 
-While these numbers reveal interesting patterns, we cannot confidently conclude that a star’s presence directly affects a film’s success. There may be other underlying factors at play that influence these outcomes. In fact, one possible influence is genre. As seen in the box plot in @fig-GenreRatingBox, drama films tend to receive the highest ratings, which could help explain Tom Hanks’ strong performance. Comedy showed greater variability and several low-rated outliers, possibly contributing to Adam Sandler’s lower ratings. Action films fall somewhere in the middle in terms of rating consistency, which may account for the steadier results seen with Tom Cruise and Dwayne Johnson. Meanwhile, Nicolas Cage has appeared across a wide range of genres, likely contributing to the broader spread in his ratings. However, further exploration will be needed to determine whether these patterns hold across a larger set of stars and whether other factors like genre play a more significant role.
+While these numbers reveal interesting patterns, we cannot confidently conclude that a star’s presence directly affects a film’s success. There may be other underlying factors at play that influence these outcomes. In fact, one possible influence could be **genre**. As seen in the box plot in @fig-GenreRatingBox, **drama** films tend to receive the **highest ratings**, which could help explain _Tom Hanks_’ strong performance. **Comedy** showed **greater variability** and several low-rated outliers, possibly contributing to _Adam Sandler’s_ lower ratings. **Action** films fall somewhere in the middle in terms of _rating consistency_, which may account for the **steadier results** seen with _Tom Cruise and Dwayne Johnson_. Meanwhile, _Nicolas Cage_ has appeared across a wide range of genres, likely contributing to the **broader spread** in his ratings. However, further exploration will be needed to determine whether these patterns hold across a larger set of stars and whether other factors like genre play a more significant role.
 
 ### Bar Chart
 
@@ -555,6 +555,7 @@ Together, @tbl-Star and @fig-StarProfitBar provide a clearer understanding of th
 
 ### Scatter Plot
 
+To better understand how audiences respond to the films of the most frequently featured stars, we created a scatterplot that maps the individual movie ratings for each of the top five actors (@fig-StarRatingScatter). Each point represents a single film, with its vertical position showing the audience rating and its color and shape identifying the star. This visualization allows us to look beyond averages and see the full range of how each star’s movies are received, helping us explore whether certain actors consistently appear in higher-rated films or if their performance doesn't have much of an impact.
 
 ```{r}
 #| label: fig-StarRatingScatter
@@ -571,7 +572,8 @@ ggplot(
   data = top_star_movies, # Use the filtered dataset
   mapping = aes(x = Star,    # X-axis shows the star's name
                 y = Rating,   # Y-axis shows the movie rating
-                color = Star   # Color points by star for distinction
+                color = Star,   # Color points by star for distinction
+                shape = Star # Shape for star distinction
                 )
   ) +
   geom_jitter(width = 0.2, size = 3) +
@@ -579,7 +581,8 @@ ggplot(
   labs(
     x = "Star",   # X-axis label
     y = "Movie Rating",  # Y-axis label
-    color = "Top Stars Name"
+    color = "Top Stars Name",
+    shape = "Top Stars Name"
   ) +
   theme_minimal() +     # Uses a clean, minimal theme
   theme(
@@ -599,6 +602,14 @@ ggplot(
  
 ```
 
+In @fig-StarRatingScatter, _Tom Hanks_ clearly stands out, with all of his movies receiving **ratings above 6.0**, and several reaching as high as 8.5. This pattern reflects what we saw in the Summary @tbl-Star, where he had the **highest average rating** overall. The cluster of tightly grouped, high ratings also suggests that his performances tend to be well-received.
+
+In contrast, _Nicolas Cage_’s points are much more scattered, ranging from just over **3 to above 7**. This **wide spread** supports the **high standard deviation** shown in the @tbl-Star and illustrates the inconsistency in how his movies are rated by audiences. While he’s been in some well-rated movies, he’s also been in several that scored poorly.
+
+_Adam Sandler_’s ratings mostly fall in the mid range, with one movie below 4. This matches his **lower average rating** from @tbl-star and shows that even though he appears in many films, they don’t always perform well with audiences. 
+
+_Tom Cruise_ has no ratings below 6, and most of his films land in a narrow range between **6.5 and 7.5**. This confirms what we saw earlier, he not only scores well but does so consistently, which could be part of why his movies tend to be financially successful too. Similarly, _Dwayne Johnson_'s ratings are mostly **clustered around 6** with little spread, reflecting consistent but average performance.
+
 # Conclusion
 
 LAYAN
@@ -606,12 +617,15 @@ LAYAN
 # Sources and References
 
 **Main Dataset:**
+
 Hieu2695. (2019, November 5). Movie Industry [Data set]. GitHub. Retrieved May 6, 2025, from https://github.com/hieu2695/Movie-Industry/blob/master/Movie.csv
 
 **Supplemantry Dataset:**
-Grijalva, D. (2019, October). Movie Industry, Version unknown. Retrieved May 6, 2025, from https://www.kaggle.com/datasets/danielgrijalvas/movies
+
+Grijalva, D. (2019, October). Movie Industry [Data set]. Retrieved May 6, 2025, from https://www.kaggle.com/datasets/danielgrijalvas/movies
 
 **Old Dataset:**
+
 Itiievskyi, I. (n.d.). IMDB Top 250 [Data set]. GitHub. Retrieved May 6, 2025, from https://github.com/itiievskyi/IMDB-Top-250/blob/master/imdb_top_250.csv
 
 
