@@ -371,7 +371,8 @@ MoviesJoined %>%
   ggplot(aes(x = Year, 
              y = CumulativeProfit, 
              color = Company, 
-             linetype = Company)) +
+             linetype = Company)
+         ) +
   #Draw the lines with thicker width
   geom_line(size = 1.2) +
   #Add labels and formatting
@@ -554,8 +555,8 @@ star_summary <- MoviesJoined %>%
 # Displaying the Summary Table ----
 star_summary %>%
   kable(booktabs = TRUE,
-        col.names = c("Star", "Movie Count", "Avg. Rating",
-                      "Rating SD", "Avg. Profit"), # Names columns
+        col.names = c("Star", "MovieCount", "AvgRating",
+                      "RatingSD", "AvgProfit"), # Names columns
         align = c("l", rep("c", 4)), # Align first column left, others center
         format = "latex" # Output the table in LaTeX format (for PDF rendering)
   )%>%
@@ -692,7 +693,7 @@ In @fig-StarRatingScatter, _Tom Hanks_ clearly stands out, with all of his movie
 
 In contrast, _Nicolas Cage_’s points are much more scattered, ranging from just over **3 to above 7**. This **wide spread** supports the **high standard deviation** shown in the @tbl-Star and illustrates the inconsistency in how his movies are rated by audiences. While he’s been in some well-rated movies, he’s also been in several that scored poorly.
 
-_Adam Sandler_’s ratings mostly fall in the mid range, with one movie below 4. This matches his **lower average rating** from @tbl-star and shows that even though he appears in many films, they don’t always perform well with audiences. 
+_Adam Sandler_’s ratings mostly fall in the mid range, with one movie below 4. This matches his **lower average rating** from @tbl-Star and shows that even though he appears in many films, they don’t always perform well with audiences. 
 
 _Tom Cruise_ has no ratings below 6, and most of his films land in a narrow range between **6.5 and 7.5**. This confirms what we saw earlier, he not only scores well but does so consistently, which could be part of why his movies tend to be financially successful too. Similarly, _Dwayne Johnson_'s ratings are mostly **clustered around 6** with little spread, reflecting consistent but average performance.
 
