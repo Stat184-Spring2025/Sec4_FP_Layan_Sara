@@ -243,8 +243,11 @@ top_star_movies <- MoviesJoined %>%
   filter(Star %in% top5_stars)
 
 # Plot
-ggplot(top_star_movies, aes(x = Star, y = Rating, color = Star, shape = Star)) +
-  geom_jitter(width = 0.2, size = 3, alpha = 0.8) +
+ggplot(top_star_movies, aes(x = Star, 
+                            y = Rating,
+                            color = Star)) +
+  geom_jitter(width = 0.2, size = 3) +
+  scale_color_manual(values = psuPalette) +
   labs(
     title = "Movie Ratings of Top 5 Most Frequent Stars",
     x = "Star",

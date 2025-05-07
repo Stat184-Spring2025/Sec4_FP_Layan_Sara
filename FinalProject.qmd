@@ -56,7 +56,7 @@ To guide our analysis, we focused on three key research questions:
 
 2.  Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
 
-3.  Which stars appear most frequently in successful movies, and does their presence correlate with higher success?
+3.  Which stars appear most frequently in successful movies, and does the presence of specific stars tend to be linked to higher movie success?
 
 Through these questions, we aim to uncover patterns and insights that explain what contributes to a movie’s success. By comparing audience ratings across genres, we hope to identify which types of films tend to get the most viewers. Investigating studio performance and budget-profit relationships allows us to understand how financial decisions impact profitability. Finally, analyzing the presence of frequently featured stars helps us explore whether certain actors consistently appear in higher-performing films, potentially revealing a link between star presence and success. Overall, our goal is to better understand the creative and financial factors that shape successful movies.
 
@@ -173,17 +173,25 @@ MoviesJoined <- read.csv(url, header = TRUE)
 
 # FAIR and CARE Principles
 
-The **FAIR** principles are essential for promoting high standards in data sharing, transparency, and longterm usability which our datasets do align to these guidelines. **Findable**: Our primary dataset was sourced from Kaggle and the secondary from GitHub, both of which are widely recognized platforms that provide basic metadata and descriptive tagging, making the data easy to locate. 
-**Accessible**: Both datasets are publicly available and can be retrieved without login or payment barriers through standard web protocols. However, because the long-term availability of external repositories is not guaranteed, we also uploaded both original datasets as well as our cleaned and merged version to our own GitHub repository to ensure continued access and reproducibility. 
-**Interoperable**: The datasets are provided in CSV format, a widely accepted and accessible format that enables easy integration into R and other data analysis tools, which insures smooth integration and analysis across various platforms. 
-**Reusable**: The data includes meaningful attributes that provide context for interpretation. Through our cleaning and documentation process, we enhanced its structure, added derived variables like Profit, and clearly described the data’s provenance, making it suitable for future research.
+The **FAIR** principles are essential for promoting high standards in data sharing, transparency, and long-term usability which our datasets do align to these guidelines.
+
+-   **Findable**: Our primary dataset was sourced from Kaggle and the secondary from GitHub, both of which are widely recognized platforms that provide basic metadata and descriptive tagging, making the data easy to locate.
+
+-   **Accessible**: Both datasets are publicly available and can be retrieved without login or payment barriers through standard web protocols. However, because the long-term availability of external repositories is not guaranteed, we also uploaded both original datasets as well as our cleaned and merged version to our own GitHub repository to ensure continued access and reproducibility.
+
+-   **Interoperable**: The datasets are provided in CSV format, a widely accepted and accessible format that enables easy integration into R and other data analysis tools, which insures smooth integration and analysis across various platforms.
+
+-   **Reusable**: The data includes meaningful attributes that provide context for interpretation. Through our cleaning and documentation process, we enhanced its structure, added derived variables like Profit, and clearly described the data’s provenance, making it suitable for future research.
 
 The **CARE** principles, focus on the ethical use of data for all people, especially for Indigenous or marginalized communities. While our datasets do not directly involve sensitive or community specific data, it’s still important to reflect on these principles to ensure our work is thoughtful, fair, and respectful.
-**Collective Benefit**: Our project aims to uncover trends in the film industry that can help others better understand what drives movie success, whether creatively or financially. We hope our analysis supports open learning and sparks interest in data-driven storytelling.
-**Authority to Control**: The datasets we used weren’t officially released by the platforms that host the data (IMDb, TMDb). That being said, they do algin with their terms and conditions of public usage.
-**Responsibility**: We made sure to treat the data with care. Since the dataset is non-sensitive and publicly accessible, we mainly focused on cleaning, organizing, and documenting it properly so our analysis would be accurate, transparent, and respectful.
-**Ethics**: We focused on minimizing harm by ensuring that our dataset did not include private or sensitive information and we avoided making claims that could misrepresent people or groups. We used the data strictly for educational purposes, and we made sure our work promoted fairness.
 
+-   **Collective Benefit**: Our project aims to uncover trends in the film industry that can help others better understand what drives movie success, whether creatively or financially. We hope our analysis supports open learning and sparks interest in data-driven storytelling.
+
+-   **Authority to Control**: The datasets we used weren’t officially released by the platforms that host the data (IMDb, TMDb). That being said, they do algin with their terms and conditions of public usage.
+
+-   **Responsibility**: We made sure to treat the data with care. Since the dataset is non-sensitive and publicly accessible, we mainly focused on cleaning, organizing, and documenting it properly so our analysis would be accurate, transparent, and respectful.
+
+-   **Ethics**: We focused on minimizing harm by ensuring that our dataset did not include private or sensitive information and we avoided making claims that could misrepresent people or groups. We used the data strictly for educational purposes, and we made sure our work promoted fairness and transparency.
 
 # EDA: Exploratory Data Analysis
 
@@ -308,11 +316,127 @@ theme(
 
 ```
 
-## Companies and Movies
+
+## Company Profitability and Financial Patterns
+
+In this section, we will examine which top production studios generate the highest profits and whether there is a noticeable relationship between how much a company spends (**budget**) and how much it earns (**profit**). We began by identifying the **15 most active production companies** in our dataset, which we defined as those with the highest number of films. Focusing on these studios allowed us to base our comparisons on a solid number of films, making the patterns we observed more reliable.
+
+```{r}
+#| label: TopCompanies
+
+# Creating visualizations for 2nd Question ----
+
+# Get top 15 companies by number of movies
+TopCompanies <- MoviesJoined %>%
+  count(Company, sort = TRUE) %>%
+  slice_max(n, n = 15) %>%
+  pull(Company)
+
+```
+
+### Profit Bar Chart
+
+We began by calculating the average profit for each of the top 15 companies. To visualize this, we created a horizontal bar chart (@fig-CompanyProfit) that shows each company's name on the y-axis and its corresponding profit earnings in USD on the x-axis. The bars are sorted from lowest to highest average profit, allowing for a quick comparison of financial performance.
+
+```{r}
+#| label: fig-CompanyProfit
+#| fig-cap: "Profit of the 15 Most Active Production Companies"
+#| fig-alt: "Bar Chart showing the profit in USD of the top 15 companies"
+#| fig-pos: "H"
+#| fig-height: 5
+#| fig-width: 7
+
+#Create the Profit Bar Chart -----
+#Get the average Profit for the Companies
+CompanyProfit <- MoviesJoined %>%
+  group_by(Company) %>%
+  summarize(AverageProfit = mean(Profit, na.rm = TRUE)) %>%
+  ungroup()
+
+CompanyProfit %>%
+  filter(Company %in% TopCompanies) %>%
+  ggplot(aes(x = reorder(Company, AverageProfit), #Sort the bars by profit
+             y = AverageProfit)) +
+  geom_col(fill = "#AC8DCE") +
+  coord_flip() + #Make it horizontal 
+  #Label axes
+  labs(
+    x = "Production Company",
+    y = "Profit (USD)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 10, face = "bold")
+  )
+
+
+```
+
+@fig-CompanyProfit shows a clear range of performance across companies. **DreamWorks Animation** leads, by a significant amount, with the highest profit among all production companies analyzed. This suggests that DreamWorks not only produces successful films but also does so consistently across its portfolio. Following DreamWorks are *Walt Disney Pictures* and *Warner Bros*. also show strong profits, indicating that these companies don’t only have a strong industry presence but also a track record of producing very profitable movies. On the other hand, other active studios like Lionsgate and Columbia Pictures displayed more moderate profits, suggesting variability in the financial outcomes of their film portfolios. At the lower end of the chart, companies like *MGM* and *Fox Searchlight Pictures* have noticeably lower profits, suggesting either higher production costs or lower returns. The *gap* between top and bottom studios is significant, indicating that not all active companies achieve the same financial outcomes.
+
+To sum up, this visualization helps highlight which studios are most effective in turning their investments into financial success and provides a high-level view of profitability trends across the industry.
+
+### Budget Bar Chart
+
+We then looked at the production budget for films produced by the same top 15 active companies to determine whether higher investment levels are associated with higher profits. The results are shown in @fig-CompanyBudget, a horizontal bar chart similar in structure to the profit chart, where each bar represents a company and their corresponding average budget in USD on the x-axis. Then, again, the bars are sorted from lowest to highest average budget. We can see in @fig-CompanyBudget, the results highlight some interesting differences.
+
+
+```{r}
+#| label: fig-CompanyBudget
+#| fig-cap: "Profit of the 15 Most Active Production Companies"
+#| fig-alt: "Bar Chart showing the profit in USD of the top 15 companies"
+#| fig-pos: "H"
+#| fig-height: 5
+#| fig-width: 7
+
+#Create the Budget Bar Chart -----
+#Calculate Average Budget per Company
+CompanyBudget <- MoviesJoined %>%
+  group_by(Company) %>%
+  summarize(AverageBudget = mean(Budget, na.rm = TRUE)) %>%
+  ungroup()
+#Filter to top companies and plot
+CompanyBudget %>%
+  filter(Company %in% TopCompanies) %>%
+  ggplot(aes(x = reorder(Company, AverageBudget), y = AverageBudget)) +
+  geom_col(fill = "#1E407C") +
+  coord_flip() +
+  labs(
+    title = "Budget of the 15 Most Active Production Companies",
+    x = "Production Company",
+    y = "Budget (USD)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 10, face = "bold")
+  )
+
+```
+
+
+
+### Budget vs. Profit Scatter Plot
+
+
+
+## Star Impact on Movie Success
 
 SARA
 
-# Q 3
+### Summary Table
+
+LAYAN
+
+### Bar Chart
+
+SARA
+
+### Scatter Plot
+
+LAYAN
+
 
 # Conclusion
 
