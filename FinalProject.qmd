@@ -612,7 +612,7 @@ _Tom Cruise_ has no ratings below 6, and most of his films land in a narrow rang
 
 # Conclusion
 
-LAYAN
+To wrap up, our project investigated three main questions about what makes a movie successful. First, we examined how audience ratings differ across genres using @tbl-GenreRating and @fig-GenreRatingBox, and found that genres vary widely in performance. **Drama** had the _highest_ and _most consistent ratings_, while **Horror** showed more _variability_ and _lower scores_, with **Comedy** showing notable _outliers_. Second, we explored the relationship between production budgets and profits through @ (Profit by Company), @ (Budget by Company), and the Budget vs. Profit Scatter Plot (@). Together, these visuals suggest a _positive relationship between budget and profit_, where **higher investment** is often linked to **higher returns**. Lastly, in analyzing the impact of movie stars using @tbl-Star, @fig-StarProfitBar (Success Count), and @fig-StarRatingScatter (Ratings Scatterplot), we found that frequently appearing stars do not necessarily guarantee higher-rated or more profitable movies. While some stars like **Tom Cruise** and **Tom Hanks** show more consistent success, overall, our analysis **did not find strong evidence** that star presence alone drives movie success, more investigation would be needed to draw a firm conclusion. Overall, exploring these patterns helps deepen our understanding of what drives both critical and commercial success in the movie industry.
 
 # Sources and References
 
