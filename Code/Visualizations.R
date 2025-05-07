@@ -231,30 +231,48 @@ StarCount %>%
   ) +
   theme_minimal()
 
+
 ##2: ScatterPlot of the Rating for Top Stars
 # Identify Top 5 Stars by number of movies
 top5_stars <- MoviesJoined %>%
-  count(Star, sort = TRUE) %>%
-  slice_head(n = 5) %>%
-  pull(Star)
+  count(Star, sort = TRUE) %>%  # Count how many times each star appears
+  slice_head(n = 5) %>%  # Keep the top 5 most frequent stars
+  pull(Star)  
 
 # Filter movies for those stars
 top_star_movies <- MoviesJoined %>%
   filter(Star %in% top5_stars)
 
 # Plot
-ggplot(top_star_movies, aes(x = Star, 
-                            y = Rating,
-                            color = Star)) +
-  geom_jitter(width = 0.2, size = 3) +
-  scale_color_manual(values = psuPalette) +
-  labs(
-    title = "Movie Ratings of Top 5 Most Frequent Stars",
-    x = "Star",
-    y = "Movie Rating"
+ggplot(
+  data = top_star_movies, # Use the filtered dataset
+  mapping = aes(x = Star,    # X-axis shows the star's name
+                y = Rating,   # Y-axis shows the movie rating
+                color = Star   # Color points by star for distinction
+                )
   ) +
-  theme_minimal() +
-  theme(legend.title = element_blank())
+  geom_jitter(width = 0.2, size = 3) +
+  scale_color_manual(values = psuPalette) +  # Apply custom colors 
+  labs(
+    title = "Movie Ratings of Top 5 Most Frequent Stars", 
+    x = "Star",   # X-axis label
+    y = "Movie Rating"  # Y-axis label
+  ) +
+  theme_minimal() +     # Uses a clean, minimal theme
+  theme(
+    legend.position = "right",  # Place the legend on the right
+    legend.title = element_text(size = 14, face ="bold"),  # Set legend text size and bolds
+    legend.text = element_text(size = 13),
+    axis.title.x = element_text(face = "bold",   # Make the x-axis title bold
+                                size = 15,    # Set font size to 14
+                                margin = margin(t = 15)
+    ),
+    axis.title.y = element_text(face = "bold", # Customize y-axis title
+                                size = 15, 
+                                margin = margin(r = 15)
+    ),
+    axis.text = element_text(size = 12, face = "bold")
+  ) # margin pushes title away from axis
 
 # Bar Chart
 MoviesJoined %>%
