@@ -256,6 +256,23 @@ ggplot(top_star_movies, aes(x = Star,
   theme_minimal() +
   theme(legend.title = element_blank())
 
+# Bar Chart
+MoviesJoined %>%
+  mutate(Success = ifelse(Profit > 50000000, "Successful", "Unsuccessful")) %>%
+  filter(Star %in% TopStarList) %>%
+  count(Star, Success) %>%
+  ggplot(aes(x = reorder(Star, -n), y = n, fill = Success)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_y_continuous(breaks = 1:10) +
+  scale_fill_manual(values = c("Successful" = "#3EA39E",
+                               "Unsuccessful" = "#E98300")) +
+  coord_flip() +
+  labs(
+    title = "Success Breakdown per Top Star",
+    x = "Star", y = "Number of Movies"
+  ) +
+  theme_minimal()
+
 #----------------------------------------------------------
 
 #4. Other Plots
