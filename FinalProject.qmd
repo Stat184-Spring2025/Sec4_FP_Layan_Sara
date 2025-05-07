@@ -68,11 +68,11 @@ Before settling on these data sources, we evaluated multiple datasets. An earlie
 
 ## Main Dataset
 
-Our main dataset was sourced from a **Github** repository created by the authors Tran Hieu Le, Totyana Hill, Fahim Ishrak and Zhilin Wang. It was originally scraped from TMDb (The Movie Database) this dataset contains information on approximately 5,000 movies released between the 1930s and 2016. Each *case* in the dataset represents a single movie, and includes essential attributes related to its financial performance and basic descriptors. The key *attributes* include production budget, worldwide revenue, title, production company, runtime, and genre. The *purpose* of collecting this data was to offer a structured overview of film financials, enabling analysis of profitability and return on investment.
+Our main dataset was sourced from a **Github** repository created by the authors Tran Hieu Le, Totyana Hill, Fahim Ishrak and Zhilin Wang. It was originally scraped from TMDb (The Movie Database) this dataset contains information on approximately 5,000 movies released between the 1930s and 2016 (Hieu2695, 2019). Each *case* in the dataset represents a single movie, and includes essential attributes related to its financial performance and basic descriptors. The key *attributes* include production budget, worldwide revenue, title, production company, runtime, and genre. The *purpose* of collecting this data was to offer a structured overview of film financials, enabling analysis of profitability and return on investment.
 
 ## Secondary Dataset
 
-Our secondary dataset was obtained from **Kaggle** and published by Daniel Grijalva. It was originally scraped from IMDb and contains metadata on approximately 7,600 movies spanning from 1980 to 2020. Each *case* corresponds to an individual movie and captures its descriptive, creative, and audience-related *attributes*. These include age rating, director, writer, lead actor (star), release year, rating count, and rating score. The *purpose* of this dataset was to supplement our main data by providing richer descriptive and audience-related information, which helped us better address our research questions.
+Our secondary dataset was obtained from **Kaggle** and published by Daniel Grijalva. It was originally scraped from IMDb and contains metadata on approximately 7,600 movies spanning from 1980 to 2020 (Grijalva, 2019). Each *case* corresponds to an individual movie and captures its descriptive, creative, and audience-related *attributes*. These include age rating, director, writer, lead actor (star), release year, rating count, and rating score. The *purpose* of this dataset was to supplement our main data by providing richer descriptive and audience-related information, which helped us better address our research questions.
 
 ## Merged and Final Dataset
 
@@ -519,12 +519,12 @@ This analysis highlights that although large budgets can contribute to high prof
 
 ## Star Impact on Movie Success
 
-To explore our third research question, examining which actors appear most frequently in movies and whether their presence contributes to a film’s success. We defined success of movies in two distinct ways to deepen our analysis. The first definition focuses on **financial success** (@fig-ProfitSuccessBar), measured by a profit exceeding $50 million. The second centers on **critical success** (@fig-StarRatingScatter), evaluated through audience ratings. By analyzing how often the top five most frequent stars appear in successful films under each definition, we were able to identify consistent patterns and better understand the impact of star power on movie performance.
+To explore our third research question, examining which actors appear most frequently in movies and whether their presence contributes to a film’s success. We defined success of movies in two distinct ways to deepen our analysis. The first definition focuses on **financial success** (@fig-StarProfitBar), measured by a profit exceeding $50 million. The second centers on **critical success** (@fig-StarRatingScatter), evaluated through audience ratings. By analyzing how often the top five most frequent stars appear in successful films under each definition, we were able to identify consistent patterns and better understand the impact of star power on movie performance.
 
 
 ### Summary Table
 
-This Summary @tbl-Star presents statistics for the five most frequently appearing stars in the dataset. The columns include: **Movie Count** (the number of films each star appeared in), **Avg. Rating** (the average audience rating for those films), **Rating SD** (the standard deviation of ratings), and **Avg. Profit** (the average profit for the star's films). This table helps us begin exploring whether the most active stars tend to be in more successful films. In the following sections, we’ll also visualize this data to examine whether their presence is linked to higher ratings or greater profitability.
+This Summary table presents statistics for the five most frequently appearing stars in the dataset. The columns include: **Movie Count** (the number of films each star appeared in), **Avg. Rating** (the average audience rating for those films), **Rating SD** (the standard deviation of ratings), and **Avg. Profit** (the average profit for the star's films). This table helps us begin exploring whether the most active stars tend to be in more successful films. In the following sections, we’ll also visualize this data to examine whether their presence is linked to higher ratings or greater profitability.
 
 ```{r}
 #| label: WranglingStarSmry
@@ -567,8 +567,10 @@ star_summary %>%
 
 ```
 
-The table shows that **Nicolas Cage** appears in the most films, with a total of **13**, but also has the _highest variability_ in ratings, with a _standard deviation_ of **1.24**, suggesting inconsistent audience reception. In contrast, **Dwayne Johnson** is the most consistent performer, with a _low standard deviation_ of **0.38**, though his _average rating_ is relatively normal at **5.99**. **Tom Hanks** stands out with the **highest average rating** of **7.33**, reflecting strong audience approval, along with a _high average profit_. **Tom Cruise** offers the strongest balance, combining a _high average rating_ of **6.97** with the _highest average profit_ in the group.
+@tbl-Star shows that **Nicolas Cage** appears in the most films, with a total of **13**, but also has the _highest variability_ in ratings, with a _standard deviation_ of **1.24**, suggesting mixed audience responses. In contrast, **Dwayne Johnson** is the most consistent performer, with a _low standard deviation_ of **0.38**, though his _average rating_ is relatively normal at **5.99**. **Tom Hanks** stands out with the **highest average rating** of **7.33**, indicating that his films are well-received by viewers, along with a _high average profit_. **Tom Cruise** offers the strongest balance, combining a _high average rating_ of **6.97** with the _highest average profit_ in the group.
 
+
+While these numbers reveal interesting patterns, we cannot confidently conclude that a star’s presence directly affects a film’s success. There may be other underlying factors at play that influence these outcomes. In fact, one possible influence could be **genre**. As seen in the box plot in @fig-GenreRatingBox, **drama** films tend to receive the **highest ratings**, which could help explain _Tom Hanks_’ strong performance. **Comedy** showed **greater variability** and several low-rated outliers, possibly contributing to _Adam Sandler’s_ lower ratings. **Action** films fall somewhere in the middle in terms of _rating consistency_, which may account for the **steadier results** seen with _Tom Cruise and Dwayne Johnson_. Meanwhile, _Nicolas Cage_ has appeared across a wide range of genres, likely contributing to the **broader spread** in his ratings. However, further exploration will be needed to determine whether these patterns hold across a larger set of stars and whether other factors like genre play a more significant role.
 
 ### Bar Chart
 
@@ -632,15 +634,14 @@ MoviesJoined %>%
 
 @fig-StarProfitBar complements the earlier summary table (@tbl-Star). We can see that all *13* of **Tom Cruise’s** movies are considered successful under our definition, aligning with his position in the summary table, @tbl-Star, as the star with the *highest average profit*. This consistency supports the idea that his presence in a film is a strong indicator of financial success for that film.
 
-An interesting comparison arises between **Tom Hanks** and **Adam Sandler**, who both have two unsuccessful films, and Adam Sandler has just one more successful film (*10*) than Tom Hanks (*9*). Yet despite this, @tbl-Star shows that Tom Hanks has a significantly higher average profit, suggesting that the magnitude of financial success in Hanks’s films is much greater—likely due to higher box office returns per film—even if he has fewer successes by count.
-
-On the other hand, **Nicolas Cage**, who has the *lowest average profit*, also appears in the highest number of unsuccessful films (*6*), compared to *7* successful ones. This aligns with his broader performance variability. **Dwayne Johnson** sits in the middle, with a moderate average profit and a fairly balanced split: *7* successful and *4* unsuccessful films.
+An interesting comparison arises between **Tom Hanks** and **Adam Sandler**, who both have two unsuccessful films, and Adam Sandler has just one more successful film (*10*) than Tom Hanks (*9*). Yet despite this, @tbl-Star shows that Tom Hanks has a significantly higher average profit, suggesting that the magnitude of financial success in Hanks’s films is much greater—likely due to higher box office returns per film—even if he has fewer successes by count. On the other hand, **Nicolas Cage**, who has the *lowest average profit*, also appears in the highest number of unsuccessful films (*6*), compared to *7* successful ones. This aligns with his broader performance variability. **Dwayne Johnson** sits in the middle, with a moderate average profit and a fairly balanced split: *7* successful and *4* unsuccessful films.
 
 Together, @tbl-Star and @fig-StarProfitBar provide a clearer understanding of the consistency of each star’s success, not just how many movies they’ve made, but how often those movies perform well financially.
 
 
 ### Scatter Plot
 
+To better understand how audiences respond to the films of the most frequently featured stars, we created a scatterplot that maps the individual movie ratings for each of the top five actors (@fig-StarRatingScatter). Each point represents a single film, with its vertical position showing the audience rating and its color and shape identifying the star. This visualization allows us to look beyond averages and see the full range of how each star’s movies are received, helping us explore whether certain actors consistently appear in higher-rated films or if their performance doesn't have much of an impact.
 
 ```{r}
 #| label: fig-StarRatingScatter
@@ -657,7 +658,8 @@ ggplot(
   data = top_star_movies, # Use the filtered dataset
   mapping = aes(x = Star,    # X-axis shows the star's name
                 y = Rating,   # Y-axis shows the movie rating
-                color = Star   # Color points by star for distinction
+                color = Star,   # Color points by star for distinction
+                shape = Star # Shape for star distinction
                 )
   ) +
   geom_jitter(width = 0.2, size = 3) +
@@ -665,7 +667,8 @@ ggplot(
   labs(
     x = "Star",   # X-axis label
     y = "Movie Rating",  # Y-axis label
-    color = "Top Stars Name"
+    color = "Top Stars Name",
+    shape = "Top Stars Name"
   ) +
   theme_minimal() +     # Uses a clean, minimal theme
   theme(
@@ -685,13 +688,32 @@ ggplot(
  
 ```
 
+In @fig-StarRatingScatter, _Tom Hanks_ clearly stands out, with all of his movies receiving **ratings above 6.0**, and several reaching as high as 8.5. This pattern reflects what we saw in the Summary @tbl-Star, where he had the **highest average rating** overall. The cluster of tightly grouped, high ratings also suggests that his performances tend to be well-received.
+
+In contrast, _Nicolas Cage_’s points are much more scattered, ranging from just over **3 to above 7**. This **wide spread** supports the **high standard deviation** shown in the @tbl-Star and illustrates the inconsistency in how his movies are rated by audiences. While he’s been in some well-rated movies, he’s also been in several that scored poorly.
+
+_Adam Sandler_’s ratings mostly fall in the mid range, with one movie below 4. This matches his **lower average rating** from @tbl-star and shows that even though he appears in many films, they don’t always perform well with audiences. 
+
+_Tom Cruise_ has no ratings below 6, and most of his films land in a narrow range between **6.5 and 7.5**. This confirms what we saw earlier, he not only scores well but does so consistently, which could be part of why his movies tend to be financially successful too. Similarly, _Dwayne Johnson_'s ratings are mostly **clustered around 6** with little spread, reflecting consistent but average performance.
+
 # Conclusion
 
-LAYAN
+To wrap up, our project investigated three main questions about what makes a movie successful. First, we examined how audience ratings differ across genres using @tbl-GenreRating and @fig-GenreRatingBox, and found that genres vary widely in performance. **Drama** had the _highest_ and _most consistent ratings_, while **Horror** showed more _variability_ and _lower scores_, with **Comedy** showing notable _outliers_. Second, we explored the relationship between production budgets and profits through @ (Profit by Company), @ (Budget by Company), and the Budget vs. Profit Scatter Plot (@). Together, these visuals suggest a _positive relationship between budget and profit_, where **higher investment** is often linked to **higher returns**. Lastly, in analyzing the impact of movie stars using @tbl-Star, @fig-StarProfitBar (Success Count), and @fig-StarRatingScatter (Ratings Scatterplot), we found that frequently appearing stars do not necessarily guarantee higher-rated or more profitable movies. While some stars like **Tom Cruise** and **Tom Hanks** show more consistent success, overall, our analysis **did not find strong evidence** that star presence alone drives movie success, more investigation would be needed to draw a firm conclusion. Overall, exploring these patterns helps deepen our understanding of what drives both critical and commercial success in the movie industry.
 
 # Sources and References
 
-LAYAN
+**Main Dataset:**
+
+Hieu2695. (2019, November 5). Movie Industry [Data set]. GitHub. Retrieved May 6, 2025, from https://github.com/hieu2695/Movie-Industry/blob/master/Movie.csv
+
+**Supplemantry Dataset:**
+
+Grijalva, D. (2019, October). Movie Industry [Data set]. Retrieved May 6, 2025, from https://www.kaggle.com/datasets/danielgrijalvas/movies
+
+**Old Dataset:**
+
+Itiievskyi, I. (n.d.). IMDB Top 250 [Data set]. GitHub. Retrieved May 6, 2025, from https://github.com/itiievskyi/IMDB-Top-250/blob/master/imdb_top_250.csv
+
 
 {{< pagebreak >}}
 
