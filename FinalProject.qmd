@@ -431,6 +431,9 @@ CompanyBudget %>%
 SARA
 
 ### Summary Table
+
+This Summary @tbl-Star presents statistics for the five most frequently appearing stars in the dataset. The columns include: **Movie Count** (the number of films each star appeared in), **Avg. Rating** (the average audience rating for those films), **Rating SD** (the standard deviation of ratings), and **Avg. Profit** (the average profit for the star's films). This table helps us begin exploring whether the most active stars tend to be in more successful films. In the following sections, we’ll also visualize this data to examine whether their presence is linked to higher ratings or greater profitability.
+
 ```{r}
 #| label: WranglingStarSmry
 
@@ -471,6 +474,9 @@ star_summary %>%
   row_spec(0, bold = TRUE)  # Bold the header row
 
 ```
+
+The table shows that **Nicolas Cage** appears in the most films, with a total of **13**, but also has the _highest variability_ in ratings, with a _standard deviation_ of **1.24**, suggesting inconsistent audience reception. In contrast, **Dwayne Johnson** is the most consistent performer, with a _low standard deviation_ of **0.38**, though his _average rating_ is relatively normal at **5.99**. **Tom Hanks** stands out with the **highest average rating** of **7.33**, reflecting strong audience approval, along with a _high average profit_. **Tom Cruise** offers the strongest balance, combining a _high average rating_ of **6.97** with the _highest average profit_ in the group.
+
 
 ### Bar Chart
 
