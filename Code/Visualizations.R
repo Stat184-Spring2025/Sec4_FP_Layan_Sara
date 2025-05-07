@@ -17,6 +17,7 @@ psuPalette <- c("#1E407C", "#BC204B", "#3EA39E", "#E98300",
                 "#999999", "#AC8DCE", "#F2665E", "#99CC00")
 
 
+#-------------------------------------------------------------------------------
 
 #1. How do audience ratings compare across the five most common movie genres?----
 
@@ -49,7 +50,7 @@ MoviesJoined %>%
                                 margin = margin(r = 15))
   ) # margin pushes title away from axis
 
-
+# ------------------------------------------------------------------------------
 
 #2. Which top studios have the best return on investment, 
 #and is there a relationship between movie budget and profit?----
@@ -209,7 +210,7 @@ MoviesJoined %>%
     axis.text = element_text(size = 11)
   )
 
-
+#-------------------------------------------------------------------------------
 
 #3. Who are the most frequently featured stars in the movie data set?
 
@@ -229,6 +230,28 @@ StarCount %>%
     y = "Number of Movies"
   ) +
   theme_minimal()
+
+##2: ScatterPlot of the Rating for Top Stars
+# Identify Top 5 Stars by number of movies
+top5_stars <- MoviesJoined %>%
+  count(Star, sort = TRUE) %>%
+  slice_head(n = 5) %>%
+  pull(Star)
+
+# Filter movies for those stars
+top_star_movies <- MoviesJoined %>%
+  filter(Star %in% top5_stars)
+
+# Plot
+ggplot(top_star_movies, aes(x = Star, y = Rating, color = Star, shape = Star)) +
+  geom_jitter(width = 0.2, size = 3, alpha = 0.8) +
+  labs(
+    title = "Movie Ratings of Top 5 Most Frequent Stars",
+    x = "Star",
+    y = "Movie Rating"
+  ) +
+  theme_minimal() +
+  theme(legend.title = element_blank())
 
 #----------------------------------------------------------
 
@@ -254,70 +277,3 @@ ggplot(MoviesJoined, aes(x = RatingCount, y = Rating)) +
   ) +
   theme_minimal()
 
-#------------------------------------------------------------------------------
-
-#5. WORK IN PROGRESS:
-
-##1. Production Companies Making Kid Movies Profit(Change to bar maybe) 
-TopMovies <- MoviesJoined%>%
-  filter(Company %in% c("Walt Disney Pictures",
-                        "Warner Bros.",
-                        "Universal Pictures",
-                        "Columbia Pictures",
-                        "DreamWorks Animation"))
-#view(TopMovies)
-ggplot(data = TopMovies, 
-       mapping = aes(
-         x = Budget, 
-         y = Profit, 
-         color = Company
-         )
-       ) +
-  geom_point(size = 3) +
-  labs(
-    title = "Profit per Movie by Company (G & PG Rated)",
-    x = "Budget",
-    y = "Profit (USD)",
-    color = "Company"
-    ) +
-  scale_color_manual(
-    values = psuPalette
-    )+
-  theme_bw() +
-  theme(
-    legend.position = "right"
-    )
-
-
-##2: Rating of the top stars over times
-TopStars <- c("Nicolas Cage",
-              "Adam Sandler",
-              "Denzel Washington",
-              "Dwayne Johnson",
-              "Tom Cruise",
-              "Tom Hanks")
-
-StarMovies <- MoviesJoined%>%
-  filter(Star %in% TopStars)
-#View(StarMovies)
-RatingYear <- StarMovies%>%
-  group_by(Star,Year)%>%
-  summarise(AverageRating = mean(Rating, na.rm = TRUE)) %>%
-  ungroup()
-
-all_years <- data.frame(Star = rep(TopStars, each = length(unique(RatingYear$Year))),
-                        Year = rep(unique(RatingYear$Year), times = length(TopStars)))
-
-StarRatingsByYearFull <- all_years %>%
-  left_join(RatingYear, by = c("Star", "Year")) %>%
-  replace_na(list(AverageRating = 0))  # Replace missing ratings with 0
-
-ggplot(StarRatingsByYearFull, aes(x = Year, y = AverageRating, color = Star)) +
-  geom_line(size = 1) +
-  geom_smooth(method = "loess", se = FALSE, linetype = "dashed", size = 1) +  # Smoothed line
-  labs(title = "Actor Ratings Over Time", 
-       x = "Year", 
-       y = "Average Rating",
-       color = "Actor") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
