@@ -44,6 +44,8 @@ Here's an overview of key files and folders in this repository:
 
 -README.md: This file that gives breif overview about our repositoary and data.
 
+-InitialPlan: This our intial plan for the project
+
 ## Data Sources and Acknowledgements
 
 - The Primary Dataset is sourced from Github repository created by the authors Tran Hieu Le, Totyana Hill, Fahim Ishrak and Zhilin Wang.
@@ -55,4 +57,5 @@ Here's an overview of key files and folders in this repository:
 
 ## Authors
 
-Layan AL Busaidi - lma5769@psu.edu
+Layan Al Busaidi - lma5769@psu.edu
+Sara Al Riyami - ssa5596@psu.edu
