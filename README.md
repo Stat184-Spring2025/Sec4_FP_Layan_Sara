@@ -45,7 +45,12 @@ README.md: This file that gives breif overview about our repositoary and data.
 
 ## Data Sources and Acknowledgements
 
-Be sure to list where you got any data used within the project. Be sure to acknowledge any one whose work or elements you're drawing upon.
+- The Primary Dataset is sourced from Github repository created by the authors Tran Hieu Le, Totyana Hill, Fahim Ishrak and Zhilin Wang.
+  [(Movie Box Office Prediction)](https://github.com/hieu2695/Movie-Industry?tab=readme-ov-file)
+- The Secondary Dataset is sourced from Kaggel published by Daniel Grijalva.
+  [(Movie Industry)](https://www.kaggle.com/datasets/danielgrijalvas/movies)
+- Our Older Dataset was from Kaggle published by Deepanshu Chhikara.
+  [(IMDb Top250 Movies)](https://doi.org/10.34740/KAGGLE/DSV/7990386)
 
 ## Authors
 
