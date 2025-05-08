@@ -17,7 +17,9 @@ By exploring these questions, we aimed to better understand how different attrib
 
 ### Interesting Insight
 
-This is optional but highly recommended. You'll include one interesting insight from your project as part of the README. This insight is most effective when you include a visual. Keep in mind that this visual must be included as an image file (e.g., JPG, PNG, etc.). You can export plots created with `{ggplot2}` by using the function `ggsave`.
+An interesting key insight we found was that drama films consistently outperformed other genres in terms of audience ratings. As shown in the box plot below, dramas had the highest median rating and the most consistent performance. In contrast, horror films tended to receive lower and more variable ratings, indicating that some people loved them, others really didn’t. We also observed that comedy, while moderately rated on average, had a notably high number of outliers, both high and low, showing that audience reactions to comedy can be much more mixed.
+
+![e2f4cbea-a6c7-4f66-b6de-80f79535c935](https://github.com/user-attachments/assets/f7446c08-9d80-424f-98a2-e2a9109fb875)
 
 ## Repo Structure
 
