@@ -23,19 +23,20 @@ This is optional but highly recommended. You'll include one interesting insight 
 
 Here's an overview of key files and folders in this repository:
 
-Data File: Contains the raw CSV files used in the project:
+-Data File: Contains the raw CSV files used in the project:
 
-  - Budget_Revenue.csv — contains financial and studio data
+  - Budget_Revenue.csv - contains financial and studio data
   - Movie.csv — contains descriptive and rating data
   - MoviesJoined.csv — Our cleaned and merged dataset
   - Old_JoinedIMDB.csv - Old dataset that we didn't use
   - OLD_imdb.csv - Old dataset that we didn't use
 
 Code Files:  Contains our R code files from our analysis:
-  -FreqSumtables.R – Contains code for generating frequency tables and summary statistics used in the EDA section.
-  -OLD_TidyingData.R – Initial version of the data cleaning script (archived).
-  -Tidying_DataNew.R – Updated and finalized script for tidying and merging the two original datasets.
-  -Visualizations.R – Contains all plotting code for line graphs, scatter plots, box plots, and bar charts used throughout the report. Also includes aesthetic customizations.
+
+  -FreqSumtables.R : Contains code for generating frequency tables and summary statistics used in the EDA section.
+  -OLD_TidyingData.R : Initial version of the data cleaning script (archived).
+  -Tidying_DataNew.R : Updated and finalized script for tidying and merging the two original datasets.
+  -Visualizations.R : Contains all plotting code for line graphs, scatter plots, box plots, and bar charts used throughout the report. Also includes aesthetic customizations.
 
 Final_Report.qmd: The full Quarto report including code, figures, and analysis.
 
@@ -54,4 +55,4 @@ README.md: This file that gives breif overview about our repositoary and data.
 
 ## Authors
 
-Give information about who are the authors of the project and how people can get in touch if they have questions.
+Layan AL Busaidi - lma5769@psu.edu
