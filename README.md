@@ -25,11 +25,11 @@ Here's an overview of key files and folders in this repository:
 
 -Data File: Contains the raw CSV files used in the project:
 
-  - Budget_Revenue.csv - contains financial and studio data
-  - Movie.csv — contains descriptive and rating data
-  - MoviesJoined.csv — Our cleaned and merged dataset
-  - Old_JoinedIMDB.csv - Old dataset that we didn't use
-  - OLD_imdb.csv - Old dataset that we didn't use
+  - Budget_Revenue.csv : contains financial and studio data
+  - Movie.csv : contains descriptive and rating data
+  - MoviesJoined.csv : Our cleaned and merged dataset
+  - Old_JoinedIMDB.csv : Old dataset that we didn't use
+  - OLD_imdb.csv : Old dataset that we didn't use
 
 -Code Files:  Contains our R code files from our analysis:
 
