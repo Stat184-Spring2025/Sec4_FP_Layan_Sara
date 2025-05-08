@@ -33,10 +33,10 @@ Here's an overview of key files and folders in this repository:
 
 -Code Files:  Contains our R code files from our analysis:
 
-  -FreqSumtables.R : Contains code for generating frequency tables and summary tables
-  -OLD_TidyingData.R : Initial version of the data cleaning script (archived).
-  -Tidying_DataNew.R : Updated and finalized script for tidying and merging the datasets.
-  -Visualizations.R : Contains all plotting code for line graphs, scatter plots, box plots, and bar charts used throughout the report. Also includes aesthetic customizations.
+  - FreqSumtables.R : Contains code for generating frequency tables and summary tables
+  - OLD_TidyingData.R : Initial version of the data cleaning script (archived).
+  - Tidying_DataNew.R : Updated and finalized script for tidying and merging the datasets.
+  - Visualizations.R : Contains all plotting code for line graphs, scatter plots, box plots, and bar charts used throughout the report. Also includes aesthetic customizations.
 
 -Final_Report.qmd: The full Quarto report including code, figures, and analysis.
 
