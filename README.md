@@ -1,6 +1,6 @@
-# Project Title
+# Exploring Factors Influencing Movie Success
 
-Write a 1-2 sentences that quickly and clearly convey what your repo is for.
+This repository includes the datasets, code, and visualizations for our STAT 184 final project, where we explored various factors that influence a movie’s success using Exploratory Data Analysis (EDA). The project examined elements such as genres, stars, and production companies, and through our analysis, we discovered several interesting patterns and results.
 
 
 ## Overview
