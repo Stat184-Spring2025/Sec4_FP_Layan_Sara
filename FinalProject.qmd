@@ -221,7 +221,7 @@ Genre_summary <- MoviesJoined%>%
   group_by(Genre)%>%      # Groups the data by Genre column
   summarise(           # Calculates summary statistics for each genre
     FilmCount = n(),      # Number of films in each genre
-    MinRating = min(Rating, na.rm = TRUE),   #Minimum rating (ignores NA values)
+    MinRating = min(Rating, na.rm = TRUE),  #Minimum rating (ignores NA values)
     Q1Rating = quantile(Rating, 0.25, na.rm = TRUE),  # First quartile
     MedianRating = median(Rating, na.rm = TRUE),      # Median rating
     Q3Rating = quantile(Rating, 0.75, na.rm = TRUE),  # Third quartile
@@ -273,7 +273,7 @@ Overall, the data suggests that Drama is both the most consistently high-perform
 # Wrangling Box Plot Data ----
 ## Get Top 5 Genres 
 TopGenres <- MoviesJoined %>%
-  count(Genre, sort = TRUE) %>%  # Counts num of movies per genre and sorts them
+  count(Genre, sort = TRUE) %>% # Counts num of movies per genre and sorts them
   slice_max(order_by = n, n = 5) %>%  # Selects top 5 genres w most movies 
   pull(Genre)
 
@@ -316,6 +316,7 @@ theme(
                               margin = margin(r = 15) 
                               )   # margin pushes titles away from axis
 )
+
 
 ```
 
@@ -371,7 +372,7 @@ MoviesJoined %>%
                        linetype = Company
                        )
          ) +
-  geom_line(size = 1.2) +    # Draw the lines with thicker width
+  geom_line(linewidth = 1.2) +    # Draw the lines with thicker width
   scale_color_manual(values = psuPalette) +  # Apply custom colors
   labs(           #Add labels and formatting
     x = "Year",
@@ -403,7 +404,7 @@ CumulativeProfitData <- MoviesJoined %>%
   summarize(YearlyProfit = sum(Profit, na.rm = TRUE), .groups = "drop") %>%
   arrange(Company, Year) %>%
   group_by(Company) %>%
-  mutate(CumulativeProfit = cumsum(YearlyProfit)) # Compute cumulative profit per company
+  mutate(CumulativeProfit = cumsum(YearlyProfit)) # Compute cumulative profit
 
 # Calculate Max Budget ----
 CumulativeBudgetData <- MoviesJoined %>%
@@ -510,7 +511,12 @@ CompanySummary %>%
              )
          ) +
   geom_point(size = 3, stroke = 1) +
-  geom_smooth(aes(group = 1), method = "lm", se = FALSE, color = "black", size = 1.2) +
+  geom_smooth(aes(group = 1),
+              method = "lm", 
+              se = FALSE, 
+              color = "black", 
+              size = 1.2
+              ) +
   scale_color_manual(values = psuPalette) + #Same palette as the lines
   labs(
     x = "Budget (USD)",
@@ -697,7 +703,7 @@ ggplot(
   theme_minimal() +     # Uses a clean, minimal theme
   theme(
     legend.position = "right",  # Place the legend on the right
-    legend.title = element_text(size = 14, face ="bold"),  # Set legend text size and bolds
+    legend.title = element_text(size = 14, face ="bold"),# legend size and bold
     legend.text = element_text(size = 13),
     axis.title.x = element_text(face = "bold",   # Make the x-axis title bold
                                 size = 15,    # Set font size to 14
@@ -710,6 +716,7 @@ ggplot(
     axis.text = element_text(size = 12, face = "bold")
   ) # margin pushes title away from axis
  
+
 ```
 
 In @fig-StarRatingScatter, _Tom Hanks_ clearly stands out, with all of his movies receiving **ratings above 6.0**, and several reaching as high as 8.5. This pattern reflects what we saw in the Summary @tbl-Star, where he had the **highest average rating** overall. The cluster of tightly grouped, high ratings also suggests that his performances tend to be well-received.
