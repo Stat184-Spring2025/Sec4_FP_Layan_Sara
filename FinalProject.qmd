@@ -62,21 +62,21 @@ Through these questions, we aim to uncover patterns and insights that explain wh
 
 # Data Provenance
 
-To explore the factors contributing to movie success, we used two well-sourced datasets that each provided different but complementary information from major online movie databases. We cleaned and combined these datasets through a detailed wrangling and merging process to create a final dataset. This merged version gave us the foundation needed to conduct a thorough Exploratory Data Analysis (EDA) and effectively address our research questions.
+To explore the factors contributing to movie success, we used two well-sourced datasets that each provided different but complementary information from major online movie databases. We cleaned and combined them through an extensive data wrangling and merging process to create the final dataset. This merged version gave us the foundation needed to conduct a thorough Exploratory Data Analysis (EDA) and effectively address our research questions.
 
-Before settling on these data sources, we evaluated multiple datasets. An earlier dataset **link the source of old?**, included many relevant attributes, but the newer ones offered more complete and consistent data, especially in financials and studio identifiers, making them a better fit for our analysis.
+Before settling on these data sources, we evaluated multiple datasets. An earlier dataset (Chhikara, 2024), included many relevant attributes, but the newer ones offered more complete and consistent data, especially in financials and studio identifiers, making them a better fit for our analysis.
 
 ## Main Dataset
 
-Our main dataset was sourced from a **Github** repository created by the authors Tran Hieu Le, Totyana Hill, Fahim Ishrak and Zhilin Wang. It was originally scraped from TMDb (The Movie Database) this dataset contains information on approximately 5,000 movies released between the 1930s and 2016 (Hieu2695, 2019). Each *case* in the dataset represents a single movie, and includes essential attributes related to its financial performance and basic descriptors. The key *attributes* include production budget, worldwide revenue, title, production company, runtime, and genre. The *purpose* of collecting this data was to offer a structured overview of film financials, enabling analysis of profitability and return on investment.
+Our main dataset was sourced from a **Github** repository created by the authors Tran Hieu Le, Totyana Hill, Fahim Ishrak and Zhilin Wang. It was originally scraped from TMDb (The Movie Database). this dataset contains information on approximately 5,000 movies released between the 1930s and 2016 (Hieu2695, 2019). Each *case* in the dataset represents a single movie, and includes essential attributes related to its financial performance and basic descriptors. The key *attributes* include production budget, worldwide revenue, title, production company, runtime, and genre. The *purpose* of collecting this data was to offer a structured overview of film financials, enabling analysis of profitability and return on investment.
 
 ## Secondary Dataset
 
-Our secondary dataset was obtained from **Kaggle** and published by Daniel Grijalva. It was originally scraped from IMDb and contains metadata on approximately 7,600 movies spanning from 1980 to 2020 (Grijalva, 2019). Each *case* corresponds to an individual movie and captures its descriptive, creative, and audience-related *attributes*. These include age rating, director, writer, lead actor (star), release year, rating count, and rating score. The *purpose* of this dataset was to supplement our main data by providing richer descriptive and audience-related information, which helped us better address our research questions.
+Our secondary dataset was obtained from **Kaggle** and published by Daniel Grijalva. It was originally scraped from IMDb and contains metadata on approximately 7,600 movies spanning from 1980 to 2020 (Grijalva, 2019). Each *case* corresponds to an individual movie and includes details about its content, creators, and audience ratings. These include age rating, director, writer, lead actor (star), release year, rating count, and rating score. The *purpose* of this dataset was to supplement our main data by providing richer descriptive and audience-related information, which helped us better address our research questions.
 
 ## Merged and Final Dataset
 
-To answer our research questions, we combined our two datasets into a single, cleaned, and well-structured table. The datasets were merged based on matching *movie titles* and *production companies* to ensure accuracy and consistency. To maintain data quality, we excluded records with missing or invalid values and treated zero values in financial fields as missing. We also created a new variable, *Profit*, by subtracting budget from revenue to better assess the financial success in our analysis.
+To answer our research questions, we combined our two datasets into a single, cleaned, and well-structured table. The datasets were merged based on matching *movie titles* and *production companies* to ensure accuracy and consistency. To maintain data quality, we excluded records with missing or invalid values and treated zero values in financial fields as missing. We also created a new variable, **Profit**, by subtracting budget from revenue to better assess the financial success in our analysis.
 
 The final dataset includes movies released from 1980 to 2019, which aligns with the expected coverage based on the original time spans of the two source datasets. It contains 15 key attributes across essential categories: content (title, genre, runtime, rating), financials (budget, revenue, profit), production details (studio, director, star), and audience reception (rating score and count). This comprehensive dataset provided a strong foundation to explore our research questions related to genre-based ratings, profit of companies, and the influence of star actors on a film’s success.
 
@@ -87,9 +87,12 @@ The final dataset includes movies released from 1980 to 2019, which aligns with 
 # Tidy and Merging the two datasets: ----
 
 # Read Data ----
-url1 <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/main/Data/Budget_Revnue.csv"
+mainChunk <- "https://raw.githubusercontent.com/Stat184-Spring2025/"
+ExtraChunk <- "Sec4_FP_Layan_Sara/main/Data/Budget_Revnue.csv"
+url1 <- paste0(mainChunk,ExtraChunk)
 MoviesSubRaw <- read.csv(url1, header = TRUE)
-url2 <- "https://raw.githubusercontent.com/Stat184-Spring2025/Sec4_FP_Layan_Sara/main/Data/Movie.csv"
+ExtraChunk2 <- "Sec4_FP_Layan_Sara/main/Data/Movie.csv"
+url2 <- paste0(mainChunk,ExtraChunk2)
 MoviesMainRaw <- read.csv(url2, header = TRUE)
 
 # Tidying Secondary Movies data ----
@@ -175,11 +178,11 @@ MoviesJoined <- read.csv(url, header = TRUE)
 
 The **FAIR** principles are essential for promoting high standards in data sharing, transparency, and long-term usability which our datasets do align to these guidelines.
 
--   **Findable**: Our primary dataset was sourced from Kaggle and the secondary from GitHub, both of which are widely recognized platforms that provide basic metadata and descriptive tagging, making the data easy to locate.
+-   **Findable**: Our primary dataset was sourced from Kaggle (Hieu2695, 2019) and the secondary from GitHub (Grijalva, 2019), both of which are widely recognized platforms that provide basic metadata and descriptive tagging, making the data easy to locate. To support findability, we also included clear instructions in the repository’s _README_ file to help users locate and understand the datasets.
 
--   **Accessible**: Both datasets are publicly available and can be retrieved without login or payment barriers through standard web protocols. However, because the long-term availability of external repositories is not guaranteed, we also uploaded both original datasets as well as our cleaned and merged version to our own GitHub repository to ensure continued access and reproducibility.
+-   **Accessible**: Both datasets are publicly available and can be retrieved without login or payment barriers through standard web protocols. However, because the long-term availability of external repositories are not guaranteed, we uploaded both original datasets as well as our cleaned and merged version to our own GitHub repository and made it public to ensure continued access and reproducibility.
 
--   **Interoperable**: The datasets are provided in CSV format, a widely accepted and accessible format that enables easy integration into R and other data analysis tools, which insures smooth integration and analysis across various platforms.
+-   **Interoperable**: The datasets are provided in CSV format, a widely accepted and accessible format that enables easy use in R and other data analysis tools, which insures smooth integration and analysis across various platforms.
 
 -   **Reusable**: The data includes meaningful attributes that provide context for interpretation. Through our cleaning and documentation process, we enhanced its structure, added derived variables like Profit, and clearly described the data’s provenance, making it suitable for future research.
 
@@ -331,22 +334,18 @@ In this section, we will explore which production studios have the best return o
 #| label: WrangleTopCompanies
 
 # Creating visualizations for 2nd Question ----
-# Get top 5 and 15 companies by number of movies
-TopCompanies5 <- MoviesJoined %>%
-  count(Company, sort = TRUE) %>%
-  slice_max(n, n = 5) %>%
-  pull(Company)
 
-TopCompanies15 <- MoviesJoined %>%
-  count(Company, sort = TRUE) %>%
-  slice_max(n, n = 15) %>%
+# Get top 5 companies by number of movies ----
+TopCompanies5 <- MoviesJoined %>%  
+  count(Company, sort = TRUE) %>% # Count number of movies per company
+  slice_max(n, n = 5) %>%  # Select the top 5 companies
   pull(Company)
 
 ```
 
 ### Profit Line Graph
 
-We began by calculating the average profit for each of the top 15 companies. To visualize this, we created a horizontal bar chart (@fig-CompanyProfit) that shows each company's name on the y-axis and its corresponding profit earnings in USD on the x-axis. The bars are sorted from lowest to highest average profit, allowing for a quick comparison of financial performance.
+We began by calculating the average profit for each of the top 5 companies. To visualize this, we created a line graph (@fig-CompanyProfit) that shows the _Year_ on the y-axis and its _cumulative profit_ earnings in USD on the y-axis. Each line represents a different company, distinguished by color and line type, making it easy to compare their financial performance over time.
 
 ```{r}
 #| label: fig-CompanyProfit
@@ -356,28 +355,25 @@ We began by calculating the average profit for each of the top 15 companies. To 
 #| fig-height: 5
 #| fig-width: 7
 
-#Create the Profit Line Graph -----
+# Create the Profit Line Graph -----
 MoviesJoined %>%
-  filter(Company %in% TopCompanies5) %>%
-  #Calculate yearly total budget per company
-  group_by(Company, Year) %>%
+  filter(Company %in% TopCompanies5) %>%  # Filter data to get top 5 companies
+  group_by(Company, Year) %>%       # Group by company and year
   summarize(YearlyProfit = sum(Profit, na.rm = TRUE), .groups = "drop") %>%
-  #Sort data so cumulative sum works correctly
-  arrange(Company, Year) %>%
+  
+  arrange(Company, Year) %>% # Sorts data so cumulative sum works correctly
   group_by(Company) %>%
-  #Get cumulative sum so that line graph is smooth
   mutate(CumulativeProfit = cumsum(as.numeric(YearlyProfit))) %>%
-  #Create the line chart
-  ggplot(aes(x = Year, 
-             y = CumulativeProfit, 
-             color = Company, 
-             linetype = Company)
+  # Gets cumulative sum so line graph is smooth
+  ggplot(mapping = aes(x = Year,            # Create the line chart
+                       y = CumulativeProfit, 
+                       color = Company, 
+                       linetype = Company
+                       )
          ) +
-  #Draw the lines with thicker width
-  geom_line(size = 1.2) +
-  #Add labels and formatting
+  geom_line(size = 1.2) +    # Draw the lines with thicker width
   scale_color_manual(values = psuPalette) +  # Apply custom colors
-  labs(
+  labs(           #Add labels and formatting
     x = "Year",
     y = "Cumulative Profit (USD)",
     color = "Company",
@@ -385,34 +381,45 @@ MoviesJoined %>%
   ) +
   theme_minimal() +
   theme(
-    legend.title = element_text(face = "bold"),
-    axis.title = element_text(size = 12, face = "bold"),
-    axis.text = element_text(size = 10)
+    legend.title = element_text(face = "bold", size = 12),
+    axis.title = element_text(size = 14, face = "bold"),   # Style axis titles
+    axis.text = element_text(size = 12), # Adjust axis text size
+    axis.title.x = element_text(margin = margin(t = 15)
+                              ),
+  axis.title.y = element_text(
+    margin = margin(r = 15) 
+                              )
   )
 
-
 ```
+
 ```{r}
-#Calculate Max Profit
+#| label: CalcMaxProfBudg
+
+# Calculate Max Profit  ----
 CumulativeProfitData <- MoviesJoined %>%
-  filter(Company %in% TopCompanies5) %>%
-  group_by(Company, Year) %>%
+  filter(Company %in% TopCompanies5) %>%  # Filter for the top 5 companies
+  group_by(Company, Year) %>%   # Group by company and year
   summarize(YearlyProfit = sum(Profit, na.rm = TRUE), .groups = "drop") %>%
   arrange(Company, Year) %>%
   group_by(Company) %>%
-  mutate(CumulativeProfit = cumsum(YearlyProfit))
-#Calculate Max Budget
+  mutate(CumulativeProfit = cumsum(YearlyProfit)) # Compute cumulative profit per company
+
+# Calculate Max Budget ----
 CumulativeBudgetData <- MoviesJoined %>%
   filter(Company %in% TopCompanies5) %>%
   group_by(Company, Year) %>%
   summarize(YearlyBudget = sum(Budget, na.rm = TRUE), .groups = "drop") %>%
   arrange(Company, Year) %>%
   group_by(Company) %>%
-  mutate(CumulativeBudget = cumsum(as.numeric(YearlyBudget)))
+  mutate(CumulativeBudget = cumsum(as.numeric(YearlyBudget))
+         ) # Compute cumulative budget per company
+
+
 ```
 
-Overall, @fig-CompanyProfit shows that all *five* studios experienced growth in profit over time, though at different rates. Notably, **Universal Pictures** and **Paramount Pictures** lead in cumulative profit, especially after 2000, where their lines show a sharp upward trend. Universal, in particular, reaches the highest total profit by the end of the time range with, `r floor(max(CumulativeProfitData$CumulativeProfit, na.rm = TRUE) / 1000000000)` billion dollars in cumulative profit over the years.
-**Columbia Pictures** also shows significant late-stage growth, eventually surpassing **Walt Disney Pictures**, whose curve begins to flatten around 2015. This may suggest a decrease in the number of Disney films represented in our dataset during those years, rather than a decline in actual profitability. Meanwhile, **New Line Cinema** trails behind in cumulative earnings, indicating a more modest commercial impact overall.
+Overall, @fig-CompanyProfit shows that all *five* studios experienced growth in profit over time, though at different rates. Notably, **Universal Pictures** and **Paramount Pictures** lead in cumulative profit, especially after 2000, where their lines show a sharp upward trend. **Universal Pictures**, in particular, reaches the highest total profit by the end of the time range with, `r floor(max(CumulativeProfitData$CumulativeProfit, na.rm = TRUE) / 1000000000)` billion dollars in cumulative profit over the years.
+**Columbia Pictures** experiences substantial growth in later years, eventually overtaking **Walt Disney Pictures**, whose curve begins to grow less rapidly around 2015. This may suggest a decrease in the number of Disney films represented in our dataset during those years, rather than a decline in actual profitability. Meanwhile, **New Line Cinema** trails behind in cumulative earnings, showing it had a smaller impact at the box office overall.
 
 It’s important to note that while these trends offer valuable insight, our dataset may not fully represent every studio’s complete catalog. For example, Columbia Pictures probability stops after 2015, not because they stopped releasing but because our data doesn’t include their movies after that year.
 That being said, this visualization still provides us with an idea of how studio profits have evolved and highlights which companies have consistently *delivered financial success over time*.
@@ -431,37 +438,40 @@ Next, we created a similar line graph but changed the cumulative profit to cumul
 #| fig-height: 5
 #| fig-width: 7
 
-#Create the Budget Line Graph -----
+# Create the Budget Line Graph -----
 MoviesJoined %>%
   filter(Company %in% TopCompanies5) %>%
-  #Calculate yearly total budget per company
   group_by(Company, Year) %>%
   summarize(YearlyBudget = sum(Budget, na.rm = TRUE), .groups = "drop") %>%
-  #Sort data so cumulative sum works correctly
   arrange(Company, Year) %>%
   group_by(Company) %>%
   #Get cumulative sum so that line graph is smooth
   mutate(CumulativeBudget = cumsum(as.numeric(YearlyBudget))) %>%
-  #Create the line chart
-  ggplot(aes(x = Year, 
-             y = CumulativeBudget, 
-             color = Company, 
-             linetype = Company)) +
-  #Draw the lines with thicker width
-  geom_line(size = 1.2) +
-  #Add labels and formatting
+  ggplot(           # Create the line chart
+    mapping = aes(
+      x = Year, 
+      y = CumulativeBudget, 
+      color = Company, 
+      linetype = Company)
+    ) +
+  geom_line(size = 1.2) + # Draw the lines with thicker width
   scale_color_manual(values = psuPalette) +  # Apply custom colors
-  labs(
+  labs(             # Add labels
     x = "Year",
     y = "Cumulative Budget (USD)",
     color = "Company",
     linetype = "Company"
   ) +
-  theme_minimal() +
-  theme(
+  theme_minimal() + 
+  theme(                  # Customizing and formatting
     legend.title = element_text(face = "bold"),
-    axis.title = element_text(size = 12, face = "bold"),
-    axis.text = element_text(size = 10)
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title.x = element_text(margin = margin(t = 15)
+                              ),
+  axis.title.y = element_text(
+    margin = margin(r = 15) 
+                              )
   )
 
 ```
@@ -484,31 +494,38 @@ Now, to examine the direct relationship between investment and return, we plotte
 #| fig-width: 7
 
 # Create the budget-profit Scatter Plot -----
-#Get the Total profit and budget
+# Get the Total profit and budget ----
 CompanySummary <- MoviesJoined %>%
   filter(Company %in% TopCompanies5) %>%
   group_by(Company)%>%
   summarize(TotalProfit = sum(Profit, na.rm = TRUE), 
             TotalBudget = sum(Budget, na.rm = TRUE))
-# Create and map the plot
+
+# Create and map the plots ----
 CompanySummary %>%
-  ggplot(aes(x = TotalBudget, 
+  ggplot(mapping = aes(x = TotalBudget, 
              y = TotalProfit,
-             color = Company)) +
-  geom_point(size = 3) +
-  geom_smooth(method = "lm", se = FALSE, color = "black", size = 1.2) +
-  scale_color_manual(values = psuPalette) + #Same pallete as the lines
+             color = Company,
+             shape = Company
+             )
+         ) +
+  geom_point(size = 3, stroke = 1) +
+  geom_smooth(aes(group = 1), method = "lm", se = FALSE, color = "black", size = 1.2) +
+  scale_color_manual(values = psuPalette) + #Same palette as the lines
   labs(
     x = "Budget (USD)",
     y = "Profit (USD)",
-    color = "Company"
+    color = "Company",
+    shape = "Company"
   ) +
+# Customize axes and legend title to be more accessible ----
   theme_minimal() +
-  # Customize axes and legend title to be more accessible
   theme(
     legend.title = element_text(face = "bold"),
     axis.title = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 10)
+    axis.text = element_text(size = 12),
+    axis.title.x = element_text(margin = margin(t = 15)),
+    axis.title.y = element_text( margin = margin(r = 15))
   )
 
 ```
@@ -528,7 +545,7 @@ To explore our third research question, examining which actors appear most frequ
 
 ### Summary Table
 
-This Summary table presents statistics for the five most frequently appearing stars in the dataset. The columns include: **Movie Count** (the number of films each star appeared in), **Avg. Rating** (the average audience rating for those films), **Rating SD** (the standard deviation of ratings), and **Avg. Profit** (the average profit for the star's films). This table helps us begin exploring whether the most active stars tend to be in more successful films. In the following sections, we’ll also visualize this data to examine whether their presence is linked to higher ratings or greater profitability.
+This Summary table presents statistics for the five most frequently appearing stars in the dataset. The columns include: **MovieCount** (the number of films each star appeared in), **AvgRating** (the average audience rating for those films), **RatingSD** (the standard deviation of ratings), and **AvgProfit** (the average profit for the star's films). This table helps us begin exploring whether the most active stars tend to be in more successful films. In the following sections, we’ll also visualize this data to examine whether their presence is linked to higher ratings or greater profitability.
 
 ```{r}
 #| label: WranglingStarSmry
@@ -626,9 +643,12 @@ MoviesJoined %>%
     y = "Number of Movies") +
   theme_minimal() +
   theme(
-    legend.title = element_text(face = "bold"),
-    axis.title = element_text(size = 13, face = "bold"),
-    axis.text = element_text(size = 11, face = "bold")
+    legend.title = element_text(face = "bold", size = 14),
+    legend.text = element_text(size = 12),
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 11, face = "bold"),
+    axis.title.x = element_text(margin = margin(t = 15)),
+    axis.title.y = element_text( margin = margin(r = 15))
   )
 
 
@@ -716,7 +736,9 @@ Grijalva, D. (2019, October). Movie Industry [Data set]. Retrieved May 6, 2025, 
 
 **Old Dataset:**
 
-Itiievskyi, I. (n.d.). IMDB Top 250 [Data set]. GitHub. Retrieved May 6, 2025, from https://github.com/itiievskyi/IMDB-Top-250/blob/master/imdb_top_250.csv
+Deepanshu Chhikara. (2024). IMDb Top250 Movies [Data set]. Kaggle.
+
+https://doi.org/10.34740/KAGGLE/DSV/7990386
 
 
 {{< pagebreak >}}
