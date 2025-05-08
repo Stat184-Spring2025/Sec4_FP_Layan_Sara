@@ -57,5 +57,5 @@ Here's an overview of key files and folders in this repository:
 
 ## Authors
 
-Layan Al Busaidi - lma5769@psu.edu
-Sara Al Riyami - ssa5596@psu.edu
+- Layan Al Busaidi - lma5769@psu.edu
+- Sara Al Riyami - ssa5596@psu.edu
