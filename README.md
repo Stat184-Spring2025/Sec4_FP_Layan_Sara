@@ -31,18 +31,18 @@ Here's an overview of key files and folders in this repository:
   - Old_JoinedIMDB.csv - Old dataset that we didn't use
   - OLD_imdb.csv - Old dataset that we didn't use
 
-Code Files:  Contains our R code files from our analysis:
+-Code Files:  Contains our R code files from our analysis:
 
-  -FreqSumtables.R : Contains code for generating frequency tables and summary statistics used in the EDA section.
+  -FreqSumtables.R : Contains code for generating frequency tables and summary tables
   -OLD_TidyingData.R : Initial version of the data cleaning script (archived).
-  -Tidying_DataNew.R : Updated and finalized script for tidying and merging the two original datasets.
+  -Tidying_DataNew.R : Updated and finalized script for tidying and merging the datasets.
   -Visualizations.R : Contains all plotting code for line graphs, scatter plots, box plots, and bar charts used throughout the report. Also includes aesthetic customizations.
 
-Final_Report.qmd: The full Quarto report including code, figures, and analysis.
+-Final_Report.qmd: The full Quarto report including code, figures, and analysis.
 
-Final_Report.pdf : The full report displayed in pdf format.
+-Final_Report.pdf : The full report displayed in pdf format.
 
-README.md: This file that gives breif overview about our repositoary and data.
+-README.md: This file that gives breif overview about our repositoary and data.
 
 ## Data Sources and Acknowledgements
 
