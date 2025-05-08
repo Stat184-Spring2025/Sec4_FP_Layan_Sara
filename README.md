@@ -5,7 +5,15 @@ This repository includes the datasets, code, and visualizations for our STAT 184
 
 ## Overview
 
-Expand on those introductory sentences with a brief but informative description of your project's purpose and goals. This section should help visitors decide whether they should dig deeper into your repo/project.
+Building on that analysis, the goal of our project was to uncover deeper insights into what drives both critical and financial success in the film industry. We focused on identifying measurable patterns across different dimensions of movie data, guided by three key research questions:
+
+1) How do audience ratings compare across the five most common movie genres?
+
+2) Which top studios have the best return on investment, and is there a relationship between movie budget and profit?
+
+3) Which stars appear most frequently in successful movies, and does the presence of specific stars tend to be linked to higher movie success?
+
+By exploring these questions, we aimed to better understand how different attributes, such as creative decisions, casting, and production investment, shape a film’s performance. This project offers a data-driven perspective for anyone interested in the intersection of storytelling, business strategy, and audience response within the movie industry.
 
 ### Interesting Insight
 
