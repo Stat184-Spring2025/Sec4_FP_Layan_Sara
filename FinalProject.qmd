@@ -48,7 +48,7 @@ psuPalette <- c("#1E407C", "#BC204B", "#3EA39E", "#E98300",
 
 Movies are a huge part of our lives and a multi-billion-dollar industry that shapes and reflects society. With millions of people watching and reviewing films every year, the movie industry continues to evolve. Thousands of films are released annually, but only a few become truly successful. What factors contribute to a movie's success? Is it the genre, the budget, the actors, or something else? In this project, we set out to explore the elements that influence a movie’s success by analyzing datasets of films and looking at trends in ratings, profits, and casting.
 
-We are interested in this topic because movies are not only a major form of entertainment but also a massive industry. Understanding what leads to success can offer insights into both audience preferences and the strategies that shape film making today.
+We are interested in this topic because movies are not only a major form of entertainment but they're also a major cultural and economic force. By understanding what drives success in the film industry, we can gain deeper insight into audience preferences and the production strategies that shape the movies we see today.
 
 To guide our analysis, we focused on **three key research questions**:
 
@@ -206,7 +206,7 @@ Through EDA, we were able to detect irregularities in our dataset, gain a better
 
 ## Rating Distributions in the Five Most Common Genres
 
-In this section, we will explore how audience ratings vary across the five most common movie genres. We begin by examining the summary statistics to better understand the distribution of ratings within each genre.
+In this section, we will explore how audience ratings vary across the five most common movie genres in our dataset, which are: **Drama, Action, Horror, Comedy,** and **Adventure.** We begin by examining the summary statistics to better understand the distribution of ratings within each genre.
 
 ### Summary Table
 
@@ -257,7 +257,7 @@ Genre_summary%>%
 
 ```
 
-@tbl-GenreRating presents an overview of the ratings for the top five movie genres: Comedy, Drama, Action, Adventure, and Horror. Among these, **Drama** clearly stands out as the highest-rated genre, with a **mean rating** of **6.91**, a **median** of **7.0**, and a **maximum rating** of **9.3**. It also shows the most consistent performance, having the **lowest standard deviation** among all genres. In contrast, **Horror** ranks the lowest, with an **average rating** of **5.97** and the **widest spread** in ratings, indicating more variability in audience reception. The other genres fall in between, though **Adventure** shows a high level of variability similar to Horror.
+@tbl-GenreRating presents an overview of the ratings for the top five movie genres. Among these, **Drama** clearly stands out as the highest-rated genre, with a **mean rating** of **6.91**, a **median** of **7.0**, and a **maximum rating** of **9.3**. It also shows the most consistent performance, having the **lowest standard deviation** among all genres. In contrast, **Horror** ranks the lowest, with an **average rating** of **5.97** and the **widest spread** in ratings, indicating more variability in audience reception. The other genres fall in between, though **Adventure** shows a high level of variability similar to Horror.
 
 When looking at film counts, **Comedy** and **Drama** are the most represented, each with over **200 films**, while **Horror** has the lowest count with just **77 films**, which may contribute to its greater rating variability.
 
@@ -265,7 +265,7 @@ Overall, the data suggests that Drama is both the most consistently high-perform
 
 ### Box Plot
 
-@fig-GenreRatingBox shows a box plot of the rating distributions for the top five movie genres. This visual helps us compare the typical ratings, variation, and presence of outliers across genres. It supports and expands on the summary statistics discussed earlier.
+@fig-GenreRatingBox shows a box plot which visualizes the rating distributions for the top five movie genres. This visual helps us compare the typical ratings, variation, and presence of outliers across genres. It supports and expands on the summary statistics discussed earlier.
 
 ```{r}
 #| label: WrangleGRBoxPlot
@@ -665,7 +665,7 @@ Together, @tbl-Star and @fig-StarProfitBar provide a clearer understanding of th
 
 ### Scatter Plot
 
-To better understand how audiences respond to the films of the most frequently featured stars, we created a scatterplot that maps the individual movie ratings for each of the top five actors (@fig-StarRatingScatter). Each point represents a single film, with its vertical position showing the audience rating and its color and shape identifying the star. This visualization allows us to look beyond averages and see the full range of how each star’s movies are received, helping us explore whether certain actors consistently appear in higher-rated films or if their performance doesn't have much of an impact.
+To better understand how audiences respond to the films of the most frequently featured stars, we created a scatterplot that maps the individual movie ratings for each of the top five actors (@fig-StarRatingScatter). Each point represents a single film, with its vertical position showing the audience rating and its color and shape identifying the star. In this case, we define the success of a movie based on its **audience rating**. This visualization allows us to look beyond averages and see the full range of how each star’s movies are received, helping us explore whether certain actors consistently appear in higher-rated films or if their performance doesn't have much of an impact.
 
 ```{r}
 #| label: fig-StarRatingScatter
@@ -714,15 +714,21 @@ ggplot(
 
 In @fig-StarRatingScatter, _Tom Hanks_ clearly stands out, with all of his movies receiving **ratings above 6.0**, and several reaching as high as 8.5. This pattern reflects what we saw in the Summary @tbl-Star, where he had the **highest average rating** overall. The cluster of tightly grouped, high ratings also suggests that his performances tend to be well-received.
 
-In contrast, _Nicolas Cage_’s points are much more scattered, ranging from just over **3 to above 7**. This **wide spread** supports the **high standard deviation** shown in the @tbl-Star and illustrates the inconsistency in how his movies are rated by audiences. While he’s been in some well-rated movies, he’s also been in several that scored poorly.
+In contrast, _Nicolas Cage_’s points are much more scattered, ranging from just over **3 to above 7**. This **wide spread** supports the **high standard deviation** shown in the @tbl-Star and illustrates the inconsistency in how his movies are rated by audiences. While he’s been in some well-rated movies, he’s also been in several that scored poorly. This also relates to @fig-StarProfitBar where he had almost the same number of successful and unsuccessful movies.
 
 _Adam Sandler_’s ratings mostly fall in the mid range, with one movie below 4. This matches his **lower average rating** from @tbl-Star and shows that even though he appears in many films, they don’t always perform well with audiences. 
 
-_Tom Cruise_ has no ratings below 6, and most of his films land in a narrow range between **6.5 and 7.5**. This confirms what we saw earlier, he not only scores well but does so consistently, which could be part of why his movies tend to be financially successful too. Similarly, _Dwayne Johnson_'s ratings are mostly **clustered around 6** with little spread, reflecting consistent but average performance.
+_Tom Cruise_ has no ratings below 6, and most of his films land in a narrow range between **6.5 and 7.5**. This supports his strong position in both the @fig-StarProfitBar and @tbl-Star, he not only scores well but does so consistently, which could be part of why his movies tend to be financially successful too. Similarly, _Dwayne Johnson_'s ratings are mostly **clustered around 6** with little spread, reflecting consistent but average performance.
 
 # Conclusion
 
-To wrap up, our project investigated three main questions about what makes a movie successful. First, we examined how audience ratings differ across genres using @tbl-GenreRating and @fig-GenreRatingBox, and found that genres vary widely in performance. **Drama** had the _highest_ and _most consistent ratings_, while **Horror** showed more _variability_ and _lower scores_, with **Comedy** showing notable _outliers_. Second, we explored the relationship between production budgets and profits through @fig-CompanyProfit (Profit by Company), @fig-CompanyBudget (Budget by Company), and the Budget vs. Profit Scatter Plot (@fig-BudgetProfitPlot). Together, these visuals suggest a _positive relationship between budget and profit_, where **higher investment** is often linked to **higher returns**. Lastly, in analyzing the impact of movie stars using @tbl-Star, @fig-StarProfitBar (Success Count), and @fig-StarRatingScatter (Ratings Scatterplot), we found that frequently appearing stars do not necessarily guarantee higher-rated or more profitable movies. While some stars like **Tom Cruise** and **Tom Hanks** show more consistent success, overall, our analysis **did not find strong evidence** that star presence alone drives movie success, more investigation would be needed to draw a firm conclusion. Overall, exploring these patterns helps deepen our understanding of what drives both critical and commercial success in the movie industry.
+As a conclusion, our project investigated three main questions about what makes a movie successful. First, we examined how audience ratings differ across genres using @tbl-GenreRating and @fig-GenreRatingBox,  Our analysis showed that genres differ significantly in audience reception. **Drama** had the _highest_ and _most consistent ratings_, while **Horror** showed more _variability_ and _lower scores_, with **Comedy** showing notable _outliers_.
+
+Second, we explored which top studios have the best return on investment and whether budget correlates with profit using @fig-CompanyProfit, @fig-CompanyBudget, and @fig-BudgetProfitPlot. Our analysis revealed a *positive relationship* between **budget** and **profit**, where companies that spend more tend to earn more. However, not all studios convert spending into success equally. For instance, **Universal Pictures** showed high efficiency, achieving high profit relative to budget, whereas **Columbia Pictures** invested heavily but achieved only moderate returns. This suggests that ROI depends not just on budget size, but also on how effectively that budget is used.
+
+Lastly, in analyzing the impact of movie stars using @tbl-Star, @fig-StarProfitBar (Success Count), and @fig-StarRatingScatter (Ratings Scatterplot). Our findings suggest that while actors like *Tom Cruise* and *Tom Hanks* are associated with consistently successful films (both financially and critically) this trend does not apply to all stars. Overall, our analysis suggests that star presence alone **is not a reliable predictor of movie success**, though it may contribute in combination with other factors.
+
+In the end, our project illustrates that movie success is **multifaceted**. Genre, budget, production strategy, and casting all play roles, but **no single factor guarantees success**. By analyzing these elements from *multiple angles*, we develop a deeper understanding of what influences both **audience ratings** and **ROI** in the film industry, though our findings suggest that *further analysis would be needed* to draw definitive conclusions.
 
 # Sources and References
 
